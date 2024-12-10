@@ -331,14 +331,18 @@
 <li><strong>策略接口（Strategy）</strong>：定义了一组算法或行为的公共接口，所有具体策略都必须实现该接口。</li>
 <li><strong>具体策略类（Concrete Strategy）</strong>：实现了策略接口，提供了具体的算法或行为。</li>
 </ul>
-<p><img src="C:%5cUsers%5cDeisbeir%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241210232627733.png"
-	
-	
-	
+<p><img src="/p/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/strategy.png"
+	width="1307"
+	height="770"
+	srcset="/p/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/strategy_hu1052375191841311298.png 480w, /p/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/strategy_hu7746375932857117317.png 1024w"
 	loading="lazy"
 	
 		alt="image-20241210232627733"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="169"
+		data-flex-basis="407px"
 	
 ></p>
 <h5 id="代码示例">代码示例
@@ -583,16 +587,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">// 使用示例
-</span></span><span class="line"><span class="cl">public static void main(String[] args) {
-</span></span><span class="line"><span class="cl">        Map&lt;String, PaymentStrategyEnum&gt; map=new HashMap&lt;&gt;();
-</span></span><span class="line"><span class="cl">        map.put(&#34;CREDIT_CARD&#34;,  PaymentStrategyEnum.CREDIT_CARD);
-</span></span><span class="line"><span class="cl">        map.put(&#34;WECHAT_PAY&#34;, PaymentStrategyEnum.WECHAT_PAY);
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        map.get(&#34;CREDIT_CARD&#34;).pay(100.0);
-</span></span><span class="line"><span class="cl">        map.get(&#34;WECHAT_PAY&#34;).pay(200.0);
-</span></span><span class="line"><span class="cl">    }
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JAVA" data-lang="JAVA"><span class="line"><span class="cl"><span class="c1">// 使用示例</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">PaymentStrategyEnum</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&#34;CREDIT_CARD&#34;</span><span class="p">,</span><span class="w">  </span><span class="n">PaymentStrategyEnum</span><span class="p">.</span><span class="na">CREDIT_CARD</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&#34;WECHAT_PAY&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">PaymentStrategyEnum</span><span class="p">.</span><span class="na">WECHAT_PAY</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">map</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&#34;CREDIT_CARD&#34;</span><span class="p">).</span><span class="na">pay</span><span class="p">(</span><span class="n">100</span><span class="p">.</span><span class="na">0</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">map</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&#34;WECHAT_PAY&#34;</span><span class="p">).</span><span class="na">pay</span><span class="p">(</span><span class="n">200</span><span class="p">.</span><span class="na">0</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>注意：策略枚举是一个非常优秀和方便的模式，但是它受枚举类型的限制，每个枚举项都是 public、final、static 的，扩展性受到了一定的约束，因此在系统开发中，策略枚举一般担当不经常发生变化的角色。</p>
 <h5 id="springboot中的策略模式"><strong>SpringBoot中的策略模式</strong>
