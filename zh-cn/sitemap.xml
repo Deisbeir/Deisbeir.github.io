@@ -2,115 +2,118 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://deisbeir.github.io/des/</loc>
-    <lastmod>2024-12-10T20:11:35+08:00</lastmod>
+    <loc>https://deisbeir.github.io/</loc>
+    <lastmod>2024-12-10T21:48:01+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://deisbeir.github.io/des/en/"
+                href="https://deisbeir.github.io/en/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://deisbeir.github.io/des/"
+                href="https://deisbeir.github.io/"
                 />
   </url><url>
-    <loc>https://deisbeir.github.io/des/p/666/</loc>
+    <loc>https://deisbeir.github.io/p/hellow/</loc>
+    <lastmod>2024-12-10T21:48:01+08:00</lastmod>
+  </url><url>
+    <loc>https://deisbeir.github.io/post/</loc>
+    <lastmod>2024-12-10T21:48:01+08:00</lastmod>
+  </url><url>
+    <loc>https://deisbeir.github.io/p/666/</loc>
     <lastmod>2024-12-10T20:11:35+08:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/des/post/</loc>
-    <lastmod>2024-12-10T20:11:35+08:00</lastmod>
-  </url><url>
-    <loc>https://deisbeir.github.io/des/p/myfirstblog/</loc>
+    <loc>https://deisbeir.github.io/p/myfirstblog/</loc>
     <lastmod>2024-12-10T17:00:10+08:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/des/categories/</loc>
+    <loc>https://deisbeir.github.io/categories/</loc>
     <lastmod>2020-09-09T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://deisbeir.github.io/des/en/categories/"
+                href="https://deisbeir.github.io/en/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://deisbeir.github.io/des/categories/"
+                href="https://deisbeir.github.io/categories/"
                 />
   </url><url>
-    <loc>https://deisbeir.github.io/des/p/test-chinese/</loc>
+    <loc>https://deisbeir.github.io/p/test-chinese/</loc>
     <lastmod>2020-09-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/des/categories/test/</loc>
+    <loc>https://deisbeir.github.io/categories/test/</loc>
     <lastmod>2020-09-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/des/categories/%E6%B5%8B%E8%AF%95/</loc>
+    <loc>https://deisbeir.github.io/categories/%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2020-09-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/des/archives/</loc>
+    <loc>https://deisbeir.github.io/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/des/page/</loc>
+    <loc>https://deisbeir.github.io/page/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/des/tags/css/</loc>
+    <loc>https://deisbeir.github.io/tags/css/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/des/tags/html/</loc>
+    <loc>https://deisbeir.github.io/tags/html/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/des/tags/markdown/</loc>
+    <loc>https://deisbeir.github.io/tags/markdown/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/des/p/markdown-syntax-guide/</loc>
+    <loc>https://deisbeir.github.io/p/markdown-syntax-guide/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/des/categories/syntax/</loc>
+    <loc>https://deisbeir.github.io/categories/syntax/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/des/tags/</loc>
+    <loc>https://deisbeir.github.io/tags/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://deisbeir.github.io/des/en/tags/"
+                href="https://deisbeir.github.io/en/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://deisbeir.github.io/des/tags/"
+                href="https://deisbeir.github.io/tags/"
                 />
   </url><url>
-    <loc>https://deisbeir.github.io/des/tags/themes/</loc>
+    <loc>https://deisbeir.github.io/tags/themes/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/des/categories/themes/</loc>
+    <loc>https://deisbeir.github.io/categories/themes/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/des/p/placeholder-text/</loc>
+    <loc>https://deisbeir.github.io/p/placeholder-text/</loc>
     <lastmod>2019-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/des/tags/tag-with-whitespaces/</loc>
+    <loc>https://deisbeir.github.io/tags/tag-with-whitespaces/</loc>
     <lastmod>2019-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/des/categories/test-with-whitespaces/</loc>
+    <loc>https://deisbeir.github.io/categories/test-with-whitespaces/</loc>
     <lastmod>2019-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/des/tags/text/</loc>
+    <loc>https://deisbeir.github.io/tags/text/</loc>
     <lastmod>2019-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/des/p/math-typesetting/</loc>
+    <loc>https://deisbeir.github.io/p/math-typesetting/</loc>
     <lastmod>2019-03-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/des/tags/emoji/</loc>
+    <loc>https://deisbeir.github.io/tags/emoji/</loc>
     <lastmod>2019-03-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/des/p/emoji-support/</loc>
+    <loc>https://deisbeir.github.io/p/emoji-support/</loc>
     <lastmod>2019-03-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/des/links/</loc>
+    <loc>https://deisbeir.github.io/links/</loc>
   </url><url>
-    <loc>https://deisbeir.github.io/des/search/</loc>
+    <loc>https://deisbeir.github.io/search/</loc>
   </url><url>
-    <loc>https://deisbeir.github.io/des/%E5%85%B3%E4%BA%8E/</loc>
+    <loc>https://deisbeir.github.io/%E5%85%B3%E4%BA%8E/</loc>
   </url>
 </urlset>
