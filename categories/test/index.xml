@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Test on 德斯别尔-Des</title>
-        <link>https://deisbeir.github.io/categories/test/</link>
+        <link>http://localhost:1313/categories/test/</link>
         <description>Recent content in Test on 德斯别尔-Des</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <copyright>德斯别尔-Des</copyright><atom:link href="https://deisbeir.github.io/categories/test/index.xml" rel="self" type="application/rss+xml" />
+        <copyright>德斯别尔-Des</copyright><atom:link href="http://localhost:1313/categories/test/index.xml" rel="self" type="application/rss+xml" />
     </channel>
 </rss>
