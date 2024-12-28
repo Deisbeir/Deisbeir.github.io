@@ -46,12 +46,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;ts-logo-128.jpg&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-<<<<<<< HEAD
 &lt;/div&gt;&lt;!-- `image` field accepts both local and external images. --&gt;
 </description>
-=======
-&lt;/div&gt;&lt;!-- `image` field accepts both local and external images. --&gt;</description>
->>>>>>> 7d701834500c200d72ab72697608a5f605b3c6ac
         </item>
         <item>
         <title>Search</title>
