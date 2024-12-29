@@ -13,7 +13,7 @@
         <pubDate>Sat, 14 Dec 2024 23:39:10 +0800</pubDate>
         
         <guid>https://deisbeir.github.io/p/netty%E7%9F%A5%E8%AF%86%E7%82%B9/</guid>
-        <description>&lt;h4 id=&#34;nio-基本概念&#34;&gt;NIO 基本概念
+        <description>&lt;img src="https://deisbeir.github.io/p/netty%E7%9F%A5%E8%AF%86%E7%82%B9/show.png" alt="Featured image of post Netty知识点" /&gt;&lt;h4 id=&#34;nio-基本概念&#34;&gt;NIO 基本概念
 &lt;/h4&gt;&lt;h5 id=&#34;阻塞block与非阻塞non-block&#34;&gt;阻塞（Block）与非阻塞（Non-Block）
 &lt;/h5&gt;&lt;p&gt;阻塞和非阻塞是进程在访问数据的时候，数据是否准备就绪的一种处理方式，当数据没有准备的时候。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;阻塞&lt;/strong&gt;：往往需要等待缓冲区中的数据准备好过后才处理其他的事情，否则一直等待在那里。&lt;/p&gt;
@@ -110,7 +110,7 @@
         <pubDate>Thu, 12 Dec 2024 17:23:34 +0800</pubDate>
         
         <guid>https://deisbeir.github.io/p/jvm/</guid>
-        <description>&lt;h1 id=&#34;jvm-学习笔记&#34;&gt;JVM 学习笔记
+        <description>&lt;img src="https://deisbeir.github.io/p/jvm/show.png" alt="Featured image of post Jvm" /&gt;&lt;h1 id=&#34;jvm-学习笔记&#34;&gt;JVM 学习笔记
 &lt;/h1&gt;&lt;h2 id=&#34;1-jvm-概述&#34;&gt;1. JVM 概述
 &lt;/h2&gt;&lt;p&gt;JVM 是 Java Virtual Machine 的缩写，它是一个虚构出来的计算机，一种规范。Java 虚拟机（JVM）是 Java 程序运行的核心组件，负责将 Java 字节码转换为机器码并执行。JVM 提供了跨平台的能力，使得 Java 程序能够“一次编写，到处运行”。JVM 其实就类似于一台小电脑运行在 windows 或者 linux 这些操作系统环境下即可。它直接和操作系统进行交互，与硬件不直接交互，而操作系统可以帮我们完成和硬件进行交互的工作。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://deisbeir.github.io/p/jvm/1.png&#34;

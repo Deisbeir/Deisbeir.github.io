@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Netty on 德斯别尔-Des</title>
+        <link>https://deisbeir.github.io/tags/netty/</link>
+        <description>Recent content in Netty on 德斯别尔-Des</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>德斯别尔-Des</copyright>
+        <lastBuildDate>Sat, 14 Dec 2024 23:39:10 +0800</lastBuildDate><atom:link href="https://deisbeir.github.io/tags/netty/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Netty知识点</title>
+        <link>https://deisbeir.github.io/p/netty%E7%9F%A5%E8%AF%86%E7%82%B9/</link>
+        <pubDate>Sat, 14 Dec 2024 23:39:10 +0800</pubDate>
+        
+        <guid>https://deisbeir.github.io/p/netty%E7%9F%A5%E8%AF%86%E7%82%B9/</guid>
+        <description>&lt;img src="https://deisbeir.github.io/p/netty%E7%9F%A5%E8%AF%86%E7%82%B9/show.png" alt="Featured image of post Netty知识点" /&gt;&lt;h4 id=&#34;nio-基本概念&#34;&gt;NIO 基本概念
+&lt;/h4&gt;&lt;h5 id=&#34;阻塞block与非阻塞non-block&#34;&gt;阻塞（Block）与非阻塞（Non-Block）
+&lt;/h5&gt;&lt;p&gt;阻塞和非阻塞是进程在访问数据的时候，数据是否准备就绪的一种处理方式，当数据没有准备的时候。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;阻塞&lt;/strong&gt;：往往需要等待缓冲区中的数据准备好过后才处理其他的事情，否则一直等待在那里。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;非阻塞&lt;/strong&gt;:当我们的进程访问我们的数据缓冲区的时候，如果数据没有准备好则直接返回，不会等待。如果数据已经准备好，也直接返回。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;阻塞 IO&lt;/strong&gt; ：&lt;/p&gt;
+&lt;img src=&#34;1.png&#34; alt=&#34;image-20241228234853400&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;p&gt;&lt;strong&gt;非阻塞 IO&lt;/strong&gt; ：&lt;/p&gt;
+&lt;img src=&#34;2.png&#34; alt=&#34;image-20241228234853400&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;h5 id=&#34;同步synchronous与异步asynchronous&#34;&gt;同步（Synchronous）与异步（Asynchronous）
+&lt;/h5&gt;&lt;p&gt;同步和异步都是基于应用程序和操作系统处理 IO 事件所采用的方式。比如&lt;/p&gt;
+&lt;p&gt;**同步：**是应用程序要直接参与 IO 读写的操作。&lt;/p&gt;
+&lt;p&gt;**异步：**所有的 IO 读写交给操作系统去处理，应用程序只需要等待通知。&lt;/p&gt;
+&lt;p&gt;同步方式在处理 IO 事件的时候，必须阻塞在某个方法上面等待我们的 IO 事件完成（阻塞 IO 事件或者通过轮询 IO事件的方式），对于异步来说，所有的 IO 读写都交给了操作系统。这个时候，我们可以去做其他的事情，并不需要去完成真正的 IO 操作，当操作完成 IO 后，会给我们的应用程序一个通知。&lt;/p&gt;
+&lt;p&gt;所以异步相比较于同步带来的直接好处就是在我们处理IO数据的时候，异步的方式我们可以把这部分等待所消耗的资源用于处理其他事务，提升我们服务自身的性能。&lt;/p&gt;
+&lt;p&gt;**同步 IO **：&lt;/p&gt;
+&lt;img src=&#34;3.png&#34; alt=&#34;image-20241228235034038&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;p&gt;**异步 IO **：&lt;/p&gt;
+&lt;img src=&#34;4.png&#34; alt=&#34;image-20241228235122756&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;h4 id=&#34;java-bio与nio对比&#34;&gt;Java BIO与NIO对比
+&lt;/h4&gt;&lt;h5 id=&#34;bio传统io&#34;&gt;BIO（传统IO）：
+&lt;/h5&gt;&lt;p&gt;BIO是一个同步并阻塞的IO模式，传统的 java.io 包，它基于流模型实现，提供了我们最熟知的一些 IO 功能，比如File抽象、输入输出流等。交互方式是同步、阻塞的方式，也就是说，在读取输入流或者写入输出流时，在读、写动作完成之前，线程会一直阻塞在那里，它们之间的调用是可靠的线性顺序。&lt;/p&gt;
+&lt;h5 id=&#34;nionon-blockingnew-io&#34;&gt;NIO（Non-blocking/New I/O）
+&lt;/h5&gt;&lt;p&gt;NIO 是一种同步非阻塞的 I/O 模型，于 Java 1.4 中引入，对应 java.nio 包，提供了 Channel , Selector，Buffer 等抽象。NIO 中的 N 可以理解为 Non-blocking，不单纯是 New。它支持面向缓冲的，基于通道的 I/O 操作方法。 NIO 提供了与传统 BIO 模型中的 Socket 和 ServerSocket 相对应的 SocketChannel 和 ServerSocketChannel 两种不同的套接字通道实现,两种通道都支持阻塞和非阻塞两种模式。对于高负载、高并发的（网络）应用，应使用 NIO 的非阻塞模式来开发&lt;/p&gt;
+&lt;h5 id=&#34;bio与nio的对比&#34;&gt;BIO与NIO的对比
+&lt;/h5&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;IO模型&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;BIO&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;NIO&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;通信&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;面向流&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;面向缓冲&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;处理&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;阻塞 IO&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;非阻塞 IO&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;触发&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;无&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;选择器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h5 id=&#34;nio-的-server-通信的简单模型&#34;&gt;NIO 的 Server 通信的简单模型：
+&lt;/h5&gt;&lt;img src=&#34;5.png&#34; alt=&#34;image-20241228235452373&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;h5 id=&#34;bio-的-server-通信的简单模型&#34;&gt;BIO 的 Server 通信的简单模型：
+&lt;/h5&gt;&lt;img src=&#34;6.png&#34; alt=&#34;image-20241228235546547&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;h5 id=&#34;nio的特点&#34;&gt;NIO的特点：
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;一个线程可以处理多个通道，减少线程创建数量；&lt;/li&gt;
+&lt;li&gt;读写非阻塞，节约资源：没有可读／可写数据时，不会发生阻塞导致线程资源的浪费&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;reactor-模型&#34;&gt;Reactor 模型
+&lt;/h4&gt;&lt;h5 id=&#34;单线程的-reactor-模型&#34;&gt;单线程的 Reactor 模型
+&lt;/h5&gt;&lt;img src=&#34;7.png&#34; alt=&#34;image-20241228235754951&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;h5 id=&#34;多线程的-reactor-模型&#34;&gt;多线程的 Reactor 模型
+&lt;/h5&gt;&lt;img src=&#34;8.png&#34; alt=&#34;image-20241228235834372&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;h5 id=&#34;多线程主从-reactor-模型&#34;&gt;多线程主从 Reactor 模型
+&lt;/h5&gt;&lt;img src=&#34;9.png&#34; alt=&#34;image-20241228235922832&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;h4 id=&#34;netty-基础概念&#34;&gt;Netty 基础概念
+&lt;/h4&gt;&lt;h5 id=&#34;netty-简介&#34;&gt;Netty 简介
+&lt;/h5&gt;&lt;p&gt;Netty 是一个 NIO 客户端服务器框架，可快速轻松地开发网络应用程序，例如协议服务器和客户端。它极大地简化和简化了网络编程，例如 TCP 和 UDP 套接字服务器。&lt;/p&gt;
+&lt;h5 id=&#34;netty-执行流程&#34;&gt;Netty 执行流程
+&lt;/h5&gt;&lt;img src=&#34;10.png&#34; alt=&#34;image-20241229000048880&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;h4 id=&#34;netty-核心组件&#34;&gt;Netty 核心组件
+&lt;/h4&gt;&lt;h5 id=&#34;channel&#34;&gt;Channel
+&lt;/h5&gt;&lt;p&gt;Channel是 Java NIO 的一个基本构造。可以看作是传入或传出数据的载体。因此，它可以被打开或关闭，连接或者断开连接。&lt;/p&gt;
+&lt;h5 id=&#34;eventloop-与-eventloopgroup&#34;&gt;EventLoop 与 EventLoopGroup
+&lt;/h5&gt;&lt;p&gt;EventLoop 定义了Netty的核心抽象，用来处理连接的生命周期中所发生的事件，在内部，将会为每个Channel分配一个EventLoop。&lt;/p&gt;
+&lt;p&gt;EventLoopGroup 是一个 EventLoop 池，包含很多的 EventLoop。&lt;/p&gt;
+&lt;p&gt;Netty 为每个 Channel 分配了一个 EventLoop，用于处理用户连接请求、对用户请求的处理等所有事件。EventLoop 本身只是一个线程驱动，在其生命周期内只会绑定一个线程，让该线程处理一个 Channel 的所有 IO 事件。&lt;/p&gt;
+&lt;p&gt;一个 Channel 一旦与一个 EventLoop 相绑定，那么在 Channel 的整个生命周期内是不能改变的。一个 EventLoop 可以与多个 Channel 绑定。即 Channel 与 EventLoop 的关系是 n:1，而 EventLoop 与线程的关系是 1:1。&lt;/p&gt;
+&lt;h5 id=&#34;serverbootstrap-与-bootstrap&#34;&gt;ServerBootstrap 与 Bootstrap
+&lt;/h5&gt;&lt;p&gt;Bootstarp 和 ServerBootstrap 被称为引导类，指对应用程序进行配置，并使他运行起来的过程。Netty处理引导的方式是使你的应用程序和网络层相隔离。&lt;/p&gt;
+&lt;p&gt;Bootstrap 是客户端的引导类，Bootstrap 在调用 bind()（连接UDP）和 connect()（连接TCP）方法时，会新创建一个 Channel，仅创建一个单独的、没有父 Channel 的 Channel 来实现所有的网络交换。&lt;/p&gt;
+&lt;p&gt;ServerBootstrap 是服务端的引导类，ServerBootstarp 在调用 bind() 方法时会创建一个 ServerChannel 来接受来自客户端的连接，并且该 ServerChannel 管理了多个子 Channel 用于同客户端之间的通信。&lt;/p&gt;
+&lt;h5 id=&#34;channelhandler-与-channelpipeline&#34;&gt;ChannelHandler 与 ChannelPipeline
+&lt;/h5&gt;&lt;p&gt;ChannelHandler 是对 Channel 中数据的处理器，这些处理器可以是系统本身定义好的编解码器，也可以是用户自定义的。这些处理器会被统一添加到一个 ChannelPipeline 的对象中，然后按照添加的顺序对 Channel 中的数据进行依次处理。&lt;/p&gt;
+&lt;h5 id=&#34;channelfuture&#34;&gt;ChannelFuture
+&lt;/h5&gt;&lt;p&gt;Netty 中所有的 I/O 操作都是异步的，即操作不会立即得到返回结果，所以 Netty 中定义了一个 ChannelFuture 对象作为这个异步操作的“代言人”，表示异步操作本身。如果想获取到该异步操作的返回值，可以通过该异步操作对象的addListener() 方法为该异步操作添加监 NIO 网络编程框架 Netty 听器，为其注册回调：当结果出来后马上调用执行。&lt;/p&gt;
+&lt;p&gt;Netty 的异步编程模型都是建立在 Future 与回调概念之上的。&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

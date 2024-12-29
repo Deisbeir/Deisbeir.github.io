@@ -2,50 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://deisbeir.github.io/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2024-12-14T23:39:10+08:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/categories/</loc>
+    <loc>http://localhost:1313/post/</loc>
     <lastmod>2024-12-14T23:39:10+08:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/categories/java/</loc>
-    <lastmod>2024-12-14T23:39:10+08:00</lastmod>
-  </url><url>
-    <loc>https://deisbeir.github.io/p/netty%E7%9F%A5%E8%AF%86%E7%82%B9/</loc>
-    <lastmod>2024-12-14T23:39:10+08:00</lastmod>
-  </url><url>
-    <loc>https://deisbeir.github.io/post/</loc>
-    <lastmod>2024-12-14T23:39:10+08:00</lastmod>
-  </url><url>
-    <loc>https://deisbeir.github.io/p/jvm/</loc>
-    <lastmod>2024-12-12T17:23:34+08:00</lastmod>
-  </url><url>
-    <loc>https://deisbeir.github.io/p/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2024-12-10T23:48:54+08:00</lastmod>
-  </url><url>
-    <loc>https://deisbeir.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2024-12-10T23:48:54+08:00</lastmod>
-  </url><url>
-    <loc>https://deisbeir.github.io/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2024-12-10T22:54:14+08:00</lastmod>
-  </url><url>
-    <loc>https://deisbeir.github.io/p/hellow/</loc>
-    <lastmod>2024-12-10T21:48:01+08:00</lastmod>
-  </url><url>
-    <loc>https://deisbeir.github.io/page/</loc>
+    <loc>http://localhost:1313/page/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/archives/</loc>
+    <loc>http://localhost:1313/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://deisbeir.github.io/links/</loc>
+    <loc>http://localhost:1313/categories/</loc>
   </url><url>
-    <loc>https://deisbeir.github.io/search/</loc>
+    <loc>http://localhost:1313/categories/java/</loc>
   </url><url>
-    <loc>https://deisbeir.github.io/tags/</loc>
+    <loc>http://localhost:1313/links/</loc>
   </url><url>
-    <loc>https://deisbeir.github.io/%E5%85%B3%E4%BA%8E/</loc>
+    <loc>http://localhost:1313/search/</loc>
   </url><url>
-    <loc>https://deisbeir.github.io/categories/design_patterns/</loc>
+    <loc>http://localhost:1313/tags/</loc>
+  </url><url>
+    <loc>http://localhost:1313/%E5%85%B3%E4%BA%8E/</loc>
+  </url><url>
+    <loc>http://localhost:1313/categories/design_patterns/</loc>
   </url>
 </urlset>
