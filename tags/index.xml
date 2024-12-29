@@ -2,10 +2,51 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Tags on 德斯别尔-Des</title>
-        <link>http://localhost:1313/tags/</link>
+        <link>https://deisbeir.github.io/tags/</link>
         <description>Recent content in Tags on 德斯别尔-Des</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <copyright>德斯别尔-Des</copyright><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+        <copyright>德斯别尔-Des</copyright>
+        <lastBuildDate>Sat, 14 Dec 2024 23:39:10 +0800</lastBuildDate><atom:link href="https://deisbeir.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Java</title>
+        <link>https://deisbeir.github.io/tags/java/</link>
+        <pubDate>Sat, 14 Dec 2024 23:39:10 +0800</pubDate>
+        
+        <guid>https://deisbeir.github.io/tags/java/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Netty</title>
+        <link>https://deisbeir.github.io/tags/netty/</link>
+        <pubDate>Sat, 14 Dec 2024 23:39:10 +0800</pubDate>
+        
+        <guid>https://deisbeir.github.io/tags/netty/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Jvm</title>
+        <link>https://deisbeir.github.io/tags/jvm/</link>
+        <pubDate>Thu, 12 Dec 2024 17:23:34 +0800</pubDate>
+        
+        <guid>https://deisbeir.github.io/tags/jvm/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>软件设计</title>
+        <link>https://deisbeir.github.io/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/</link>
+        <pubDate>Tue, 10 Dec 2024 23:48:54 +0800</pubDate>
+        
+        <guid>https://deisbeir.github.io/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>设计模式</title>
+        <link>https://deisbeir.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+        <pubDate>Tue, 10 Dec 2024 23:48:54 +0800</pubDate>
+        
+        <guid>https://deisbeir.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+        <description></description>
+        </item>
+        
     </channel>
 </rss>
