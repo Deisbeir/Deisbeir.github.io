@@ -56,6 +56,8 @@
     <loc>https://deisbeir.github.io/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://deisbeir.github.io/categories/design_patterns/</loc>
+  </url><url>
     <loc>https://deisbeir.github.io/categories/java/</loc>
   </url><url>
     <loc>https://deisbeir.github.io/links/</loc>
@@ -63,7 +65,5 @@
     <loc>https://deisbeir.github.io/search/</loc>
   </url><url>
     <loc>https://deisbeir.github.io/%E5%85%B3%E4%BA%8E/</loc>
-  </url><url>
-    <loc>https://deisbeir.github.io/categories/design_patterns/</loc>
   </url>
 </urlset>
