@@ -17,11 +17,11 @@
         </item>
         <item>
         <title>设计模式</title>
-        <link>https://deisbeir.github.io/categories/design_patterns/</link>
+        <link>https://deisbeir.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
         <pubDate>Tue, 10 Dec 2024 23:48:54 +0800</pubDate>
         
-        <guid>https://deisbeir.github.io/categories/design_patterns/</guid>
-        <description>&lt;img src="https://deisbeir.github.io/categories/design_patterns/1.png" alt="Featured image of post 设计模式" /&gt;</description>
+        <guid>https://deisbeir.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+        <description></description>
         </item>
         <item>
         <title>Java 相关</title>
@@ -30,6 +30,14 @@
         
         <guid>https://deisbeir.github.io/categories/java/</guid>
         <description>&lt;img src="https://deisbeir.github.io/categories/java/1.png" alt="Featured image of post Java 相关" /&gt;</description>
+        </item>
+        <item>
+        <title>设计模式</title>
+        <link>https://deisbeir.github.io/categories/design_patterns/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://deisbeir.github.io/categories/design_patterns/</guid>
+        <description>&lt;img src="https://deisbeir.github.io/categories/design_patterns/1.png" alt="Featured image of post 设计模式" /&gt;</description>
         </item>
         
     </channel>
