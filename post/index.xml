@@ -7,7 +7,196 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>德斯别尔-Des</copyright>
-        <lastBuildDate>Sun, 15 Dec 2024 23:39:10 +0800</lastBuildDate><atom:link href="https://deisbeir.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 17 Dec 2024 23:39:10 +0800</lastBuildDate><atom:link href="https://deisbeir.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Redis 知识点</title>
+        <link>https://deisbeir.github.io/p/redis-%E7%9F%A5%E8%AF%86%E7%82%B9/</link>
+        <pubDate>Tue, 17 Dec 2024 23:39:10 +0800</pubDate>
+        
+        <guid>https://deisbeir.github.io/p/redis-%E7%9F%A5%E8%AF%86%E7%82%B9/</guid>
+        <description>&lt;img src="https://deisbeir.github.io/p/redis-%E7%9F%A5%E8%AF%86%E7%82%B9/show.png" alt="Featured image of post Redis 知识点" /&gt;&lt;h2 id=&#34;redis-相关内容记录&#34;&gt;Redis 相关内容记录
+&lt;/h2&gt;&lt;p&gt;Redis 是一个高性能的内存数据存储系统，广泛应用于缓存、消息队列、实时分析等领域。&lt;/p&gt;
+&lt;h3 id=&#34;1-内存存储机制&#34;&gt;1. 内存存储机制
+&lt;/h3&gt;&lt;p&gt;Redis 的数据存储在内存中，这意味着数据访问速度非常快。然而，内存存储也带来了数据持久化的问题。&lt;/p&gt;
+&lt;h3 id=&#34;2-数据结构&#34;&gt;2. 数据结构
+&lt;/h3&gt;&lt;p&gt;Redis 支持多种数据结构，每种都有其独特的实现和适用场景：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;字符串（String）&lt;/strong&gt;：Redis 的基本数据类型，支持动态字符串和原子操作，适用于存储简单键值对。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;哈希（Hash）&lt;/strong&gt;：由键值对组成的集合，内部使用哈希表实现，适合存储对象的多个字段。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;列表（List）&lt;/strong&gt;：有序的字符串集合，使用双向链表实现，适合在两端进行高效插入和删除操作。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;集合（Set）&lt;/strong&gt;：无序的唯一字符串集合，内部使用哈希表实现，支持高效的成员检查和集合运算。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;有序集合（Sorted Set）&lt;/strong&gt;：集合的扩展，每个成员关联一个分数，使用哈希表和跳表实现，支持有序操作。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;位图（Bitmap）&lt;/strong&gt;：通过位操作在字符串上实现，适用于存储大量的布尔值，非常节省内存。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HyperLogLog&lt;/strong&gt;：一种概率数据结构，用于估计集合中唯一元素的数量，适用于大数据量的统计场景。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;地理空间索引（Geospatial Index）&lt;/strong&gt;：使用有序集合和 geohash 实现，支持高效的地理范围查询。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-内存管理&#34;&gt;3. 内存管理
+&lt;/h3&gt;&lt;p&gt;Redis 使用 slab 分配器管理内存，减少内存碎片并提高缓存局部性。数据淘汰策略如 LRU、TTL 和随机淘汰，帮助管理内存使用。&lt;/p&gt;
+&lt;h3 id=&#34;4-持久化&#34;&gt;4. 持久化
+&lt;/h3&gt;&lt;p&gt;Redis 提供了两种持久化机制：RDB（快照持久化）和 AOF（日志持久化），它们各自有不同的工作原理和适用场景。以下是对这两种机制的详细解析：&lt;/p&gt;
+&lt;h5 id=&#34;41-rdb-redis-database-backup&#34;&gt;4.1. RDB (Redis Database Backup)
+&lt;/h5&gt;&lt;p&gt;&lt;strong&gt;RDB 快照&lt;/strong&gt;：定期将内存中的数据快照保存到磁盘，形成一个 RDB 文件。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;工作原理&lt;/strong&gt;: RDB 通过 fork 一个子进程来生成数据快照，并将快照保存到磁盘。主进程在此期间继续处理请求，不会被阻塞。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;配置&lt;/strong&gt;: 通过 &lt;code&gt;save&lt;/code&gt; 指令配置快照策略，例如 &lt;code&gt;save 900 1&lt;/code&gt; 表示在900秒内有1次修改时进行保存。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;性能考虑&lt;/strong&gt;: 使用写时复制（Copy-On-Write）技术，避免内存复制开销，确保主进程性能不受影响。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;优缺点&lt;/strong&gt;: 优点是文件紧凑，适合快速恢复；缺点是可能会丢失最近修改的数据。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;42-aof-append-only-file&#34;&gt;4.2. AOF (Append Only File)
+&lt;/h5&gt;&lt;p&gt;&lt;strong&gt;AOF 日志&lt;/strong&gt;：记录每一个写操作，确保数据的持久化。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;工作原理&lt;/strong&gt;: AOF 通过追加日志文件记录每一次写操作，恢复时重新执行这些操作。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;配置&lt;/strong&gt;: 通过 &lt;code&gt;appendfsync&lt;/code&gt; 选项控制同步频率，有 &lt;code&gt;always&lt;/code&gt;、&lt;code&gt;everysec&lt;/code&gt; 和 &lt;code&gt;no&lt;/code&gt; 三个可选值。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;文件重写&lt;/strong&gt;: 定期重写 AOF 文件，生成只包含恢复数据所需最小操作的文件，减少文件大小。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;优缺点&lt;/strong&gt;: 优点是数据安全性高，缺点是文件较大且恢复速度较慢。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;43-rdb-与-aof-的结合使用&#34;&gt;4.3. RDB 与 AOF 的结合使用
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;优先级&lt;/strong&gt;: Redis 启动时优先加载 AOF 文件，若 AOF 文件不可用，则加载 RDB 文件。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;数据一致性&lt;/strong&gt;: 两者独立进行，但 Redis 会自动处理潜在的一致性问题。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;44-持久化与性能&#34;&gt;4.4. 持久化与性能
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;影响&lt;/strong&gt;: 过于频繁的持久化操作可能影响性能，需根据实际场景调整策略。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;优化&lt;/strong&gt;: 可通过调整配置或优化硬件（如使用更快的磁盘）来缓解性能压力。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;5-redis-高可用架构设计&#34;&gt;5. Redis 高可用架构设计
+&lt;/h3&gt;&lt;p&gt;Redis 的高可用性架构设计旨在确保系统在故障发生时仍能继续提供服务，通常通过复制、监控和自动故障转移机制来实现。&lt;/p&gt;
+&lt;h5 id=&#34;51-主从复制master-slave-replication&#34;&gt;5.1. 主从复制（Master-Slave Replication）
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;基本原理&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;主节点（Master）处理读写请求，从节点（Slave）复制主节点的数据。&lt;/li&gt;
+&lt;li&gt;从节点可以提供读扩展和数据冗余。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;故障转移&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;手动故障转移：手动将从节点升级为主节点。&lt;/li&gt;
+&lt;li&gt;自动故障转移：结合 Sentinel 实现自动故障检测和转移。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;配置&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;slaveof&lt;/code&gt; 命令配置从节点。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;replica-serve-stale-data&lt;/code&gt; 控制从节点在连接不上主节点时的行为。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;52-sentinel监控与自动故障转移&#34;&gt;5.2. Sentinel（监控与自动故障转移）
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;监控 Redis 实例的状态（主从节点）。&lt;/li&gt;
+&lt;li&gt;检测故障并自动进行故障转移。&lt;/li&gt;
+&lt;li&gt;通知客户端主节点变更。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;配置&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;配置 Sentinel 节点，指定监控的主节点和从节点。&lt;/li&gt;
+&lt;li&gt;设置 &lt;code&gt;quorum&lt;/code&gt; 决定多少 Sentinel 节点同意才能进行故障转移。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;down-after-milliseconds&lt;/code&gt; 等参数调整故障检测的敏感度。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;工作流程&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;Sentinel 定期检查 Redis 实例的心跳。&lt;/li&gt;
+&lt;li&gt;当主节点故障时， Sentinel 选举一个从节点升级为主节点。&lt;/li&gt;
+&lt;li&gt;其他从节点重新配置指向新的主节点。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;53-redis-cluster集群模式&#34;&gt;5.3. Redis Cluster（集群模式）
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;高可用性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;自动分片，数据分布在多个节点。&lt;/li&gt;
+&lt;li&gt;每个节点有多个副本（从节点），支持自动故障转移。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;数据分片&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;数据根据键的哈希值分布到 16384 个槽中。&lt;/li&gt;
+&lt;li&gt;每个槽由一个主节点负责，可配置多个从节点。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;故障转移&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;当主节点故障时，集群自动选择一个从节点升级为主节点。&lt;/li&gt;
+&lt;li&gt;客户端需支持集群模式，以处理槽的重新分配。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;配置与管理&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;使用 &lt;code&gt;redis-cli --cluster&lt;/code&gt; 命令进行集群的创建和管理。&lt;/li&gt;
+&lt;li&gt;配置 &lt;code&gt;cluster-node-timeout&lt;/code&gt; 等参数调整集群行为。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;6redis-缓存击穿缓存雪崩缓存穿透&#34;&gt;6.Redis 缓存击穿、缓存雪崩、缓存穿透
+&lt;/h3&gt;&lt;p&gt;在高并发场景下，缓存系统（如 Redis）可能会遇到缓存击穿、缓存雪崩和缓存穿透等问题。这些问题会导致数据库压力骤增，甚至引发系统崩溃。&lt;/p&gt;
+&lt;h5 id=&#34;对比&#34;&gt;对比
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;问题&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;定义&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;原因&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;解决方案&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;strong&gt;缓存击穿&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;热点数据失效，大量请求直接访问数据库。&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;热点数据过期或缓存未命中。&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;加锁、永不过期、热点数据预热。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;strong&gt;缓存雪崩&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;大量缓存数据同时失效，导致数据库压力骤增。&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;缓存数据设置相同过期时间或 Redis 宕机。&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;分散过期时间、多级缓存、高可用架构、限流与降级。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;strong&gt;缓存穿透&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;查询不存在的数据，缓存和数据库均未命中，导致每次请求都访问数据库。&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;恶意请求或非法查询。&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;缓存空值、布隆过滤器、参数校验。&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h5 id=&#34;最佳实践&#34;&gt;最佳实践
+&lt;/h5&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;合理设置缓存过期时间&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;避免缓存集中失效，设置随机过期时间。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;监控与报警&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;实时监控缓存命中率和数据库查询量，及时发现异常。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;限流与降级&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;在缓存失效时，通过限流和降级保护数据库。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;数据预热&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;提前加载热点数据到缓存中，避免冷启动问题。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;使用布隆过滤器&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;对于可能不存在的数据，使用布隆过滤器减少无效查询。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
         <title>Zookeeper知识点</title>
         <link>https://deisbeir.github.io/p/zookeeper%E7%9F%A5%E8%AF%86%E7%82%B9/</link>
         <pubDate>Sun, 15 Dec 2024 23:39:10 +0800</pubDate>
