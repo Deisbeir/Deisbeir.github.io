@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>MySQL on 德斯别尔-Des</title>
+        <link>https://deisbeir.github.io/tags/mysql/</link>
+        <description>Recent content in MySQL on 德斯别尔-Des</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>德斯别尔-Des</copyright>
+        <lastBuildDate>Mon, 30 Dec 2024 15:46:45 +0800</lastBuildDate><atom:link href="https://deisbeir.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>MySQL</title>
+        <link>https://deisbeir.github.io/p/mysql/</link>
+        <pubDate>Mon, 30 Dec 2024 15:46:45 +0800</pubDate>
+        
+        <guid>https://deisbeir.github.io/p/mysql/</guid>
+        <description>&lt;img src="https://deisbeir.github.io/p/mysql/show.png" alt="Featured image of post MySQL" /&gt;&lt;h3 id=&#34;什么是关系型数据库&#34;&gt;什么是关系型数据库？
+&lt;/h3&gt;&lt;p&gt;顾名思义，关系型数据库（RDB，Relational Database）就是一种建立在关系模型的基础上的数据库。关系模型表明了数据库中所存储的数据之间的联系（一对一、一对多、多对多）。&lt;/p&gt;
+&lt;h2 id=&#34;mysql-字段类型&#34;&gt;MySQL 字段类型
+&lt;/h2&gt;&lt;p&gt;MySQL 字段类型可以简单分为三大类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;数值类型&lt;/strong&gt;：整型（TINYINT、SMALLINT、MEDIUMINT、INT 和 BIGINT）、浮点型（FLOAT 和 DOUBLE）、定点型（DECIMAL）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;字符串类型&lt;/strong&gt;：CHAR、VARCHAR、TINYTEXT、TEXT、MEDIUMTEXT、LONGTEXT、TINYBLOB、BLOB、MEDIUMBLOB 和 LONGBLOB 等，最常用的是 CHAR 和 VARCHAR。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;日期时间类型&lt;/strong&gt;：YEAR、TIME、DATE、DATETIME 和 TIMESTAMP 等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;mysql-索引&#34;&gt;MySQL 索引
+&lt;/h2&gt;&lt;h4 id=&#34;mysql-查询缓存&#34;&gt;MySQL 查询缓存
+&lt;/h4&gt;&lt;p&gt;MySQL 查询缓存是查询结果缓存。执行查询语句的时候，会先查询缓存，如果缓存中有对应的查询结果，就会直接返回。&lt;/p&gt;
+&lt;p&gt;查询缓存会在同样的查询条件和数据情况下，直接返回缓存中的结果。但需要注意的是，查询缓存的匹配条件非常严格，任何细微的差异都会导致缓存无法命中。这里的查询条件包括查询语句本身、当前使用的数据库、以及其他可能影响结果的因素，如客户端协议版本号等。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;查询缓存不命中的情况：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;任何两个查询在任何字符上的不同都会导致缓存不命中。&lt;/li&gt;
+&lt;li&gt;如果查询中包含任何用户自定义函数、存储函数、用户变量、临时表、MySQL 库中的系统表，其查询结果也不会被缓存。&lt;/li&gt;
+&lt;li&gt;缓存建立之后，MySQL 的查询缓存系统会跟踪查询中涉及的每张表，如果这些表（数据或结构）发生变化，那么和这张表相关的所有缓存数据都将失效。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;缓存虽然能够提升数据库的查询性能，但是缓存同时也带来了额外的开销，每次查询后都要做一次缓存操作，失效后还要销毁。&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;mysql-事务&#34;&gt;MySQL 事务
+&lt;/h2&gt;&lt;h4 id=&#34;何谓事务&#34;&gt;何谓事务？
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;事务是逻辑上的一组操作，要么都执行，要么都不执行。&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;何谓数据库事务&#34;&gt;何谓数据库事务？
+&lt;/h4&gt;&lt;p&gt;大多数情况下，我们在谈论事务的时候，如果没有特指&lt;strong&gt;分布式事务&lt;/strong&gt;，往往指的就是&lt;strong&gt;数据库事务&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;数据库事务在我们日常开发中接触的最多了。如果你的项目属于单体架构的话，你接触到的往往就是数据库事务了。&lt;/p&gt;
+&lt;p&gt;数据库事务可以保证多个对数据库的操作（也就是 SQL 语句）构成一个逻辑上的整体。构成这个逻辑上的整体的这些数据库操作遵循：&lt;strong&gt;要么全部执行成功,要么全部不执行&lt;/strong&gt; 。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;开启一个事务&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;START&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TRANSACTION&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;多条&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SQL&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;语句&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SQL1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SQL2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;##&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;提交事务&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;COMMIT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;img src=&#34;2.png&#34; alt=&#34;image-20241230163002562&#34; style=&#34;zoom: 67%;&#34; /&gt;
+&lt;p&gt;另外，关系型数据库（例如：&lt;code&gt;MySQL&lt;/code&gt;、&lt;code&gt;SQL Server&lt;/code&gt;、&lt;code&gt;Oracle&lt;/code&gt; 等）事务都有 &lt;strong&gt;ACID&lt;/strong&gt; 特性：&lt;/p&gt;
+&lt;img src=&#34;3.png&#34; alt=&#34;image-20241230163002562&#34; style=&#34;zoom: 67%;&#34; /&gt;
+&lt;p&gt;&lt;strong&gt;原子性&lt;/strong&gt;（&lt;code&gt;Atomicity&lt;/code&gt;）：事务是最小的执行单位，不允许分割。事务的原子性确保动作要么全部完成，要么完全不起作用；&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;一致性&lt;/strong&gt;（&lt;code&gt;Consistency&lt;/code&gt;）：执行事务前后，数据保持一致，例如转账业务中，无论事务是否成功，转账者和收款人的总额应该是不变的；&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;隔离性&lt;/strong&gt;（&lt;code&gt;Isolation&lt;/code&gt;）：并发访问数据库时，一个用户的事务不被其他事务所干扰，各并发事务之间数据库是独立的；&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;持久性&lt;/strong&gt;（&lt;code&gt;Durability&lt;/code&gt;）：一个事务被提交之后。它对数据库中数据的改变是持久的，即使数据库发生故障也不应该对其有任何影响。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;只有保证了事务的持久性、原子性、隔离性之后，一致性才能得到保障。也就是说 A、I、D 是手段，C 是目的！&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;并发事务带来了哪些问题&#34;&gt;并发事务带来了哪些问题?
+&lt;/h3&gt;&lt;p&gt;在典型的应用程序中，多个事务并发运行，经常会操作相同的数据来完成各自的任务（多个用户对同一数据进行操作）。并发虽然是必须的，但可能会导致以下的问题。&lt;/p&gt;
+&lt;h4 id=&#34;脏读dirty-read&#34;&gt;脏读（Dirty read）
+&lt;/h4&gt;&lt;p&gt;一个事务读取数据并且对数据进行了修改，这个修改对其他事务来说是可见的，即使当前事务没有提交。这时另外一个事务读取了这个还未提交的数据，但第一个事务突然回滚，导致数据并没有被提交到数据库，那第二个事务读取到的就是脏数据，这也就是脏读的由来。&lt;/p&gt;
+&lt;h4 id=&#34;丢失修改lost-to-modify&#34;&gt;丢失修改（Lost to modify）
+&lt;/h4&gt;&lt;p&gt;在一个事务读取一个数据时，另外一个事务也访问了该数据，那么在第一个事务中修改了这个数据后，第二个事务也修改了这个数据。这样第一个事务内的修改结果就被丢失，因此称为丢失修改。&lt;/p&gt;
+&lt;h4 id=&#34;不可重复读unrepeatable-read&#34;&gt;不可重复读（Unrepeatable read）
+&lt;/h4&gt;&lt;p&gt;指在一个事务内多次读同一数据。在这个事务还没有结束时，另一个事务也访问该数据。那么，在第一个事务中的两次读数据之间，由于第二个事务的修改导致第一个事务两次读取的数据可能不太一样。这就发生了在一个事务内两次读到的数据是不一样的情况，因此称为不可重复读。&lt;/p&gt;
+&lt;h4 id=&#34;幻读phantom-read&#34;&gt;幻读（Phantom read）
+&lt;/h4&gt;&lt;p&gt;幻读与不可重复读类似。它发生在一个事务读取了几行数据，接着另一个并发事务插入了一些数据时。在随后的查询中，第一个事务就会发现多了一些原本不存在的记录，就好像发生了幻觉一样，所以称为幻读。&lt;/p&gt;
+&lt;h3 id=&#34;不可重复读和幻读有什么区别&#34;&gt;不可重复读和幻读有什么区别？
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;不可重复读的重点是内容修改或者记录减少比如多次读取一条记录发现其中某些记录的值被修改；&lt;/li&gt;
+&lt;li&gt;幻读的重点在于记录新增比如多次执行同一条查询语句（DQL）时，发现查到的记录增加了。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;幻读其实可以看作是不可重复读的一种特殊情况，单独把幻读区分出来的原因主要是解决幻读和不可重复读的方案不一样。&lt;/p&gt;
+&lt;h3 id=&#34;并发事务的控制方式有哪些&#34;&gt;并发事务的控制方式有哪些？
+&lt;/h3&gt;&lt;p&gt;MySQL 中并发事务的控制方式无非就两种：&lt;strong&gt;锁&lt;/strong&gt; 和 &lt;strong&gt;MVCC&lt;/strong&gt;。锁可以看作是悲观控制的模式，多版本并发控制（MVCC，Multiversion concurrency control）可以看作是乐观控制的模式。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;锁&lt;/strong&gt; 控制方式下会通过锁来显式控制共享资源而不是通过调度手段，MySQL 中主要是通过 &lt;strong&gt;读写锁&lt;/strong&gt; 来实现并发控制。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;共享锁（S 锁）&lt;/strong&gt;：又称读锁，事务在读取记录的时候获取共享锁，允许多个事务同时获取（锁兼容）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;排他锁（X 锁）&lt;/strong&gt;：又称写锁/独占锁，事务在修改记录的时候获取排他锁，不允许多个事务同时获取。如果一个记录已经被加了排他锁，那其他事务不能再对这条记录加任何类型的锁（锁不兼容）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;读写锁可以做到读读并行，但是无法做到写读、写写并行。另外，根据根据锁粒度的不同，又被分为 &lt;strong&gt;表级锁(table-level locking)&lt;/strong&gt; 和 &lt;strong&gt;行级锁(row-level locking)&lt;/strong&gt; 。InnoDB 不光支持表级锁，还支持行级锁，默认为行级锁。行级锁的粒度更小，仅对相关的记录上锁即可（对一行或者多行记录加锁），所以对于并发写入操作来说， InnoDB 的性能更高。不论是表级锁还是行级锁，都存在共享锁（Share Lock，S 锁）和排他锁（Exclusive Lock，X 锁）这两类。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;MVCC&lt;/strong&gt; 是多版本并发控制方法，即对一份数据会存储多个版本，通过事务的可见性来保证事务能看到自己应该看到的版本。通常会有一个全局的版本分配器来为每一行数据设置版本号，版本号是唯一的。&lt;/p&gt;
+&lt;p&gt;MVCC 在 MySQL 中实现所依赖的手段主要是: &lt;strong&gt;隐藏字段、read view、undo log&lt;/strong&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;undo log : undo log 用于记录某行数据的多个版本的数据。&lt;/li&gt;
+&lt;li&gt;read view 和 隐藏字段 : 用来判断当前版本数据的可见性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;sql-标准定义了哪些事务隔离级别&#34;&gt;SQL 标准定义了哪些事务隔离级别?
+&lt;/h3&gt;&lt;p&gt;SQL 标准定义了四个隔离级别：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;READ-UNCOMMITTED(读取未提交)&lt;/strong&gt; ：最低的隔离级别，允许读取尚未提交的数据变更，可能会导致脏读、幻读或不可重复读。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;READ-COMMITTED(读取已提交)&lt;/strong&gt; ：允许读取并发事务已经提交的数据，可以阻止脏读，但是幻读或不可重复读仍有可能发生。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;REPEATABLE-READ(可重复读)&lt;/strong&gt; ：对同一字段的多次读取结果都是一致的，除非数据是被本身事务自己所修改，可以阻止脏读和不可重复读，但幻读仍有可能发生。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SERIALIZABLE(可串行化)&lt;/strong&gt; ：最高的隔离级别，完全服从 ACID 的隔离级别。所有的事务依次逐个执行，这样事务之间就完全不可能产生干扰，也就是说，该级别可以防止脏读、不可重复读以及幻读。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;隔离级别&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;脏读&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;不可重复读&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;幻读&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;READ-UNCOMMITTED&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;√&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;√&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;√&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;READ-COMMITTED&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;×&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;√&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;√&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;REPEATABLE-READ&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;×&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;×&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;√&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;SERIALIZABLE&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;×&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;×&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;×&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;mysql-的隔离级别是基于锁实现的吗&#34;&gt;MySQL 的隔离级别是基于锁实现的吗？
+&lt;/h3&gt;&lt;p&gt;MySQL 的隔离级别基于锁和 MVCC 机制共同实现的。&lt;/p&gt;
+&lt;p&gt;SERIALIZABLE 隔离级别是通过锁来实现的，READ-COMMITTED 和 REPEATABLE-READ 隔离级别是基于 MVCC 实现的。不过， SERIALIZABLE 之外的其他隔离级别可能也需要用到锁机制，就比如 REPEATABLE-READ 在当前读情况下需要使用加锁读来保证不会出现幻读。&lt;/p&gt;
+&lt;p&gt;MySQL InnoDB 存储引擎的默认支持的隔离级别是 &lt;strong&gt;REPEATABLE-READ（可重读）&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;mysql-性能怎么优化&#34;&gt;MySQL 性能怎么优化？
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;1. 抓住核心：慢 SQL 定位与分析&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;性能优化的第一步永远是找到瓶颈。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;监控工具：&lt;/strong&gt; 介绍常用的慢 SQL 监控工具，如 &lt;strong&gt;MySQL 慢查询日志&lt;/strong&gt;、&lt;strong&gt;Performance Schema&lt;/strong&gt; 等，说明你对这些工具的熟悉程度以及如何通过它们定位问题。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;EXPLAIN 命令：&lt;/strong&gt; 详细说明 &lt;code&gt;EXPLAIN&lt;/code&gt; 命令的使用，分析查询计划、索引使用情况，可以结合实际案例展示如何解读分析结果，比如执行顺序、索引使用情况、全表扫描等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;2. 由点及面：索引、表结构和 SQL 优化&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;定位到慢 SQL 后，接下来就要针对具体问题进行优化。 这里可以重点介绍索引、表结构和 SQL 编写规范等方面的优化技巧：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;索引优化：&lt;/strong&gt; 这是 MySQL 性能优化的重点，可以介绍索引的创建原则、覆盖索引、最左前缀匹配原则等。如果能结合你项目的实际应用来说明如何选择合适的索引，会更加分一些。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;表结构优化：&lt;/strong&gt; 优化表结构设计，包括选择合适的字段类型、避免冗余字段、合理使用范式和反范式设计等等。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SQL 优化：&lt;/strong&gt; 避免使用 &lt;code&gt;SELECT *&lt;/code&gt;、尽量使用具体字段、使用连接查询代替子查询、合理使用分页查询、批量操作等，都是 SQL 编写过程中需要注意的细节。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;3. 进阶方案：架构优化&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;当面试官对基础优化知识比较满意时，可能会深入探讨一些架构层面的优化方案。以下是一些常见的架构优化策略：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;读写分离：&lt;/strong&gt; 将读操作和写操作分离到不同的数据库实例，提升数据库的并发处理能力。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;分库分表：&lt;/strong&gt; 将数据分散到多个数据库实例或数据表中，降低单表数据量，提升查询效率。但要权衡其带来的复杂性和维护成本，谨慎使用。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;数据冷热分离&lt;/strong&gt;：根据数据的访问频率和业务重要性，将数据分为冷数据和热数据，冷数据一般存储在存储在低成本、低性能的介质中，热数据高性能存储介质中。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;缓存机制：&lt;/strong&gt; 使用 Redis 等缓存中间件，将热点数据缓存到内存中，减轻数据库压力。这个非常常用，提升效果非常明显，性价比极高！&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;4. 其他优化手段&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;除了慢 SQL 定位、索引优化和架构优化，还可以提及一些其他优化手段，展示你对 MySQL 性能调优的全面理解：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;连接池配置：&lt;/strong&gt; 配置合理的数据库连接池（如 &lt;strong&gt;连接池大小&lt;/strong&gt;、&lt;strong&gt;超时时间&lt;/strong&gt; 等），能够有效提升数据库连接的效率，避免频繁的连接开销。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;硬件配置：&lt;/strong&gt; 提升硬件性能也是优化的重要手段之一。使用高性能服务器、增加内存、使用 &lt;strong&gt;SSD&lt;/strong&gt; 硬盘等硬件升级，都可以有效提升数据库的整体性能。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;读写分离：&lt;/strong&gt; 将读操作和写操作分离到不同的数据库实例，提升数据库的并发处理能力。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;分库分表：&lt;/strong&gt; 将数据分散到多个数据库实例或数据表中，降低单表数据量，提升查询效率。但要权衡其带来的复杂性和维护成本，谨慎使用。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;数据冷热分离&lt;/strong&gt;：根据数据的访问频率和业务重要性，将数据分为冷数据和热数据，冷数据一般存储在存储在低成本、低性能的介质中，热数据高性能存储介质中。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;缓存机制：&lt;/strong&gt; 使用 Redis 等缓存中间件，将热点数据缓存到内存中，减轻数据库压力。这个非常常用，提升效果非常明显，性价比极高！&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;4. 其他优化手段&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;除了慢 SQL 定位、索引优化和架构优化，还可以提及一些其他优化手段，展示你对 MySQL 性能调优的全面理解：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;连接池配置：&lt;/strong&gt; 配置合理的数据库连接池（如 &lt;strong&gt;连接池大小&lt;/strong&gt;、&lt;strong&gt;超时时间&lt;/strong&gt; 等），能够有效提升数据库连接的效率，避免频繁的连接开销。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;硬件配置：&lt;/strong&gt; 提升硬件性能也是优化的重要手段之一。使用高性能服务器、增加内存、使用 &lt;strong&gt;SSD&lt;/strong&gt; 硬盘等硬件升级，都可以有效提升数据库的整体性能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;本文内容基本来自&lt;a class=&#34;link&#34; href=&#34;https://javaguide.cn/database/mysql/mysql-questions-01.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;JavaGuide&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

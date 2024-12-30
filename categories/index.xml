@@ -7,13 +7,29 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>德斯别尔-Des</copyright>
-        <lastBuildDate>Sun, 15 Dec 2024 23:39:10 +0800</lastBuildDate><atom:link href="https://deisbeir.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 30 Dec 2024 15:46:45 +0800</lastBuildDate><atom:link href="https://deisbeir.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>数据库</title>
+        <link>https://deisbeir.github.io/categories/database/</link>
+        <pubDate>Mon, 30 Dec 2024 15:46:45 +0800</pubDate>
+        
+        <guid>https://deisbeir.github.io/categories/database/</guid>
+        <description>&lt;img src="https://deisbeir.github.io/categories/database/1.png" alt="Featured image of post 数据库" /&gt;</description>
+        </item>
+        <item>
         <title>Java 相关</title>
         <link>https://deisbeir.github.io/categories/java/</link>
-        <pubDate>Sun, 15 Dec 2024 23:39:10 +0800</pubDate>
+        <pubDate>Mon, 23 Dec 2024 15:20:30 +0800</pubDate>
         
         <guid>https://deisbeir.github.io/categories/java/</guid>
         <description>&lt;img src="https://deisbeir.github.io/categories/java/1.png" alt="Featured image of post Java 相关" /&gt;</description>
+        </item>
+        <item>
+        <title>中间件</title>
+        <link>https://deisbeir.github.io/categories/middleware/</link>
+        <pubDate>Thu, 19 Dec 2024 23:39:10 +0800</pubDate>
+        
+        <guid>https://deisbeir.github.io/categories/middleware/</guid>
+        <description>&lt;img src="https://deisbeir.github.io/categories/middleware/1.png" alt="Featured image of post 中间件" /&gt;</description>
         </item>
         <item>
         <title>设计模式</title>
@@ -22,6 +38,22 @@
         
         <guid>https://deisbeir.github.io/categories/design_patterns/</guid>
         <description>&lt;img src="https://deisbeir.github.io/categories/design_patterns/1.png" alt="Featured image of post 设计模式" /&gt;</description>
+        </item>
+        <item>
+        <title>操作系统</title>
+        <link>https://deisbeir.github.io/categories/os/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://deisbeir.github.io/categories/os/</guid>
+        <description>&lt;img src="https://deisbeir.github.io/categories/os/1.png" alt="Featured image of post 操作系统" /&gt;</description>
+        </item>
+        <item>
+        <title>计算机网络</title>
+        <link>https://deisbeir.github.io/categories/network/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://deisbeir.github.io/categories/network/</guid>
+        <description>&lt;img src="https://deisbeir.github.io/categories/network/1.png" alt="Featured image of post 计算机网络" /&gt;</description>
         </item>
         
     </channel>
