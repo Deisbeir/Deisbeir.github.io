@@ -2551,59 +2551,580 @@
         <pubDate>Tue, 10 Dec 2024 22:54:14 +0800</pubDate>
         
         <guid>https://deisbeir.github.io/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E7%A1%80/</guid>
-        <description>&lt;img src="https://deisbeir.github.io/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E7%A1%80/show.png" alt="Featured image of post 设计模式基础" /&gt;&lt;h3 id=&#34;常见设计模式总结&#34;&gt;常见设计模式总结
-&lt;/h3&gt;&lt;p&gt;我打算再理一遍常见的设计模式以加深印象，在这里先记录最基本的一些概念。&lt;/p&gt;
+        <description>&lt;img src="https://deisbeir.github.io/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E7%A1%80/show.png" alt="Featured image of post 设计模式基础" /&gt;&lt;h1 id=&#34;常见设计模式总结&#34;&gt;常见设计模式总结
+&lt;/h1&gt;&lt;p&gt;我打算再理一遍常见的设计模式以加深印象，在这里先记录最基本的一些概念。&lt;/p&gt;
 &lt;hr&gt;
-&lt;h4 id=&#34;什么是设计模式&#34;&gt;什么是设计模式？
-&lt;/h4&gt;&lt;p&gt;设计模式是软件设计中常见问题的典型解决方案。它们就像预制的蓝图，你可以根据需要进行定制，以解决代码中反复出现的设计问题。&lt;/p&gt;
+&lt;h2 id=&#34;什么是设计模式&#34;&gt;什么是设计模式？
+&lt;/h2&gt;&lt;p&gt;设计模式是软件设计中常见问题的典型解决方案。它们就像预制的蓝图，你可以根据需要进行定制，以解决代码中反复出现的设计问题。&lt;/p&gt;
 &lt;p&gt;模式不是一段具体的代码，而是一个解决特定问题的通用概念。你可以遵循模式的思路，实现一个适合你自己程序实际情况的解决方案。&lt;/p&gt;
-&lt;h4 id=&#34;为什么应该学习设计模式&#34;&gt;为什么应该学习设计模式？
-&lt;/h4&gt;&lt;p&gt;设计模式是解决软件设计中常见问题的经过验证的工具包。它会教你如何使用面向对象设计的原则来解决各种问题。&lt;/p&gt;
+&lt;h2 id=&#34;为什么应该学习设计模式&#34;&gt;为什么应该学习设计模式？
+&lt;/h2&gt;&lt;p&gt;设计模式是解决软件设计中常见问题的经过验证的工具包。它会教你如何使用面向对象设计的原则来解决各种问题。&lt;/p&gt;
 &lt;p&gt;设计模式定义了一种通用的语言，团队成员可以使用它更高效地进行沟通。能更好的应对变更。同时在解决某些问题时会给出灵感。&lt;/p&gt;
 &lt;p&gt;实际上，不使用设计模式也可以完成很多程序、项目，但使用设计模式会帮你避免后续的很多麻烦、节约沟通成本、使你的代码更加优雅。&lt;/p&gt;
-&lt;h4 id=&#34;每个设计模式都可以通过以下几个部分来理解&#34;&gt;每个设计模式都可以通过以下几个部分来理解
-&lt;/h4&gt;&lt;ol&gt;
+&lt;h2 id=&#34;每个设计模式都可以通过以下几个部分来理解&#34;&gt;每个设计模式都可以通过以下几个部分来理解
+&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;模式的意图&lt;/strong&gt;：简要描述问题和解决方案。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;动机&lt;/strong&gt;：进一步解释问题以及模式如何提供解决方案。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;类结构&lt;/strong&gt;：展示模式中每个部分以及它们之间的关系。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;代码示例&lt;/strong&gt;：使用一种流行的编程语言编写的代码示例，帮助更容易理解模式背后的思想。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
-&lt;h4 id=&#34;六大设计原则&#34;&gt;六大设计原则
-&lt;/h4&gt;&lt;h5 id=&#34;单一职责原则&#34;&gt;单一职责原则
-&lt;/h5&gt;&lt;p&gt;单一职责原则（Single Responsibility Principle，SRP）又称单一功能原则。这里的职责是指类变化的原因，单一职责原则规定一个类应该有且仅有一个引起它变化的原因，否则类应该被拆分（There should never be more than one reason for a class to change）。&lt;/p&gt;
+&lt;h1 id=&#34;七大设计原则&#34;&gt;七大设计原则
+&lt;/h1&gt;&lt;h2 id=&#34;单一职责原则single-responsibility-principle-srp&#34;&gt;单一职责原则**（Single Responsibility Principle, SRP）**
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;一个类应该只有一个引起它变化的原因。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;单一职责原则又称单一功能原则。这里的职责是指类变化的原因，单一职责原则规定一个类应该有且仅有一个引起它变化的原因，否则类应该被拆分（There should never be more than one reason for a class to change）。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;职责&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;职责是指类或模块的功能或任务。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;单一职责&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;一个类或模块应该只负责一项功能或任务，而不是将多个功能或任务耦合在一起。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;为什么需要单一职责原则&#34;&gt;&lt;strong&gt;为什么需要单一职责原则&lt;/strong&gt;
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;提高代码的可维护性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;当一个类只负责一项职责时，修改代码的影响范围更小，降低了引入新错误的风险。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;提高代码的可复用性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;职责单一的类更容易被复用，因为它们的功能更加明确和独立。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;降低耦合性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;职责单一的类与其他类的依赖关系更少，降低了系统的耦合性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;提高代码的可读性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;职责单一的类更容易理解和维护，因为它们的代码更加简洁和清晰。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;该原则提出对象不应该承担太多职责，如果一个对象承担了太多的职责，至少存在以下两个缺点：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;一个职责的变化可能会削弱或者抑制这个类实现其他职责的能力；&lt;/li&gt;
 &lt;li&gt;当客户端需要该对象的某一个职责时，不得不将其他不需要的职责全都包含进来，从而造成冗余代码或代码的浪费。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h5 id=&#34;开放封闭原则&#34;&gt;开放封闭原则
-&lt;/h5&gt;&lt;p&gt;开闭原则的实现方法：可以通过“抽象约束、封装变化”来实现开闭原则，即通过接口或者抽象类为软件实体定义一个相对稳定的抽象层，而将相同的可变因素封装在相同的具体实现类中。&lt;/p&gt;
+&lt;h2 id=&#34;开放封闭原则openclosed-principle-ocp&#34;&gt;开放封闭原则**（Open/Closed Principle, OCP）**
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;软件实体（类、模块、函数等）应该对扩展开放，但对修改封闭。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;软件的设计应该允许在不修改现有代码的情况下，通过扩展来增加新的功能。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;对扩展开放&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;当需求变化时，可以通过添加新的代码来扩展系统的功能，而不是修改现有的代码。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;对修改封闭&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;现有的代码应该尽量保持稳定，避免因为需求变化而频繁修改。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;为什么需要开放封闭原则&#34;&gt;&lt;strong&gt;为什么需要开放封闭原则&lt;/strong&gt;
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;提高代码的可维护性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;减少对现有代码的修改，降低引入新错误的风险。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;提高代码的可复用性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;通过扩展而不是修改，可以更好地复用现有的代码。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;降低耦合性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;通过抽象和接口，减少模块之间的依赖关系。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;开闭原则的实现方法：可以通过“抽象约束、封装变化”来实现开闭原则，即通过接口或者抽象类为软件实体定义一个相对稳定的抽象层，而将相同的可变因素封装在相同的具体实现类中。&lt;/p&gt;
 &lt;p&gt;因为抽象灵活性好，适应性广，只要抽象的合理，可以基本保持软件架构的稳定。而软件中易变的细节可以从抽象派生来的实现类来进行扩展，当软件需要发生变化时，只需要根据需求重新派生一个实现类来扩展就可以了。&lt;/p&gt;
-&lt;h5 id=&#34;里式替换原则&#34;&gt;里式替换原则
-&lt;/h5&gt;&lt;p&gt;里氏替换原则主要阐述了有关继承的一些原则，也就是什么时候应该使用继承，什么时候不应该使用继承，以及其中蕴含的原理。里氏替换原是继承复用的基础，它反映了基类与子类之间的关系，是对开闭原则的补充，是对实现抽象化的具体步骤的规范。&lt;/p&gt;
-&lt;h5 id=&#34;迪米特法则&#34;&gt;迪米特法则
-&lt;/h5&gt;&lt;p&gt;迪米特法则（Law of Demeter，LoD）又叫作最少知识原则（Least Knowledge Principle，LKP)。&lt;/p&gt;
-&lt;p&gt;迪米特法则的定义是：只与你的直接朋友交谈，不跟“陌生人”说话（Talk only to your immediate friends and not to strangers）。其含义是：如果两个软件实体无须直接通信，那么就不应当发生直接的相互调用，可以通过第三方转发该调用。其目的是降低类之间的耦合度，提高模块的相对独立性。&lt;/p&gt;
-&lt;p&gt;迪米特法则中的“朋友”是指：当前对象本身、当前对象的成员对象、当前对象所创建的对象、当前对象的方法参数等，这些对象同当前对象存在关联、聚合或组合关系，可以直接访问这些对象的方法。&lt;/p&gt;
-&lt;h5 id=&#34;接口隔离原则&#34;&gt;接口隔离原则
-&lt;/h5&gt;&lt;p&gt;接口隔离原则（Interface Segregation Principle，ISP）要求程序员尽量将臃肿庞大的接口拆分成更小的和更具体的接口，让接口中只包含客户感兴趣的方法。&lt;/p&gt;
-&lt;p&gt;要为各个类建立它们需要的专用接口，而不要试图去建立一个很庞大的接口供所有依赖它的类去调用。&lt;/p&gt;
+&lt;p&gt;开放封闭原则是面向对象设计中的重要原则，强调软件实体应该对扩展开放，但对修改封闭。通过使用抽象、策略模式和依赖注入等方法，可以实现开放封闭原则，提高代码的可维护性、可复用性和可扩展性。&lt;/p&gt;
+&lt;h2 id=&#34;里式替换原则liskov-substitution-principle-lsp&#34;&gt;里式替换原则**（Liskov Substitution Principle, LSP）**
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;子类型必须能够替换其基类型，而不会影响程序的正确性。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果一个程序使用了一个基类，那么它应该能够使用该基类的任何子类，而不会产生错误或异常。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;子类型替换基类型&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;子类应该能够完全替代基类，而不会影响程序的正确性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;行为一致性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;子类应该保持基类的行为规范，不能改变基类的预期行为。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;为什么需要里式替换原则&#34;&gt;&lt;strong&gt;为什么需要里式替换原则&lt;/strong&gt;
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;提高代码的可复用性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;子类可以替代基类，使得代码更容易复用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;提高代码的可维护性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;子类保持基类的行为规范，降低了引入新错误的风险。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;降低耦合性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;子类和基类之间的关系更加清晰，降低了系统的耦合性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;里式替换原则是面向对象设计中的重要原则，强调子类型必须能够替换其基类型，而不会影响程序的正确性。通过保持子类与基类的行为一致性、不强化前置条件和不弱化后置条件，可以实现里式替换原则，提高代码的可复用性、可维护性和可扩展性。&lt;/p&gt;
+&lt;p&gt;里氏替换原则是继承复用的基础，它反映了基类与子类之间的关系，是对开闭原则的补充，是对实现抽象化的具体步骤的规范。&lt;/p&gt;
+&lt;h2 id=&#34;迪米特法则law-of-demeter-lod&#34;&gt;迪米特法则**（Law of Demeter, LoD）**
+&lt;/h2&gt;&lt;p&gt;迪米特法则（Law of Demeter，LoD）又叫作最少知识原则（Least Knowledge Principle，LKP)。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;一个对象应该对其他对象有最少的了解，只与直接的朋友通信。&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;直接的朋友&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;直接的朋友是指当前对象的成员变量、方法参数、方法返回值等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;最少的知识&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;一个类应该只与直接的朋友交互，而不应该了解或操作朋友的朋友。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;为什么需要迪米特法则&#34;&gt;&lt;strong&gt;为什么需要迪米特法则&lt;/strong&gt;
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;降低耦合性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;减少类之间的依赖关系，降低系统的耦合性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;提高代码的可维护性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;类的职责更加明确，修改一个类的影响范围更小。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;提高代码的可复用性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;类的依赖关系更少，更容易被复用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;迪米特法则强调一个对象应该对其他对象有最少的了解，只与直接的朋友通信。通过只与直接的朋友交互和使用中介类，可以实现迪米特法则，降低系统的耦合性，提高代码的可维护性和可复用性。&lt;/p&gt;
+&lt;h2 id=&#34;接口隔离原则interface-segregation-principle-isp&#34;&gt;接口隔离原则**（Interface Segregation Principle, ISP）**
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;客户端不应该依赖于它不需要的接口。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;一个类不应该被迫实现它不需要的方法，接口应该尽量细化，每个接口只包含客户端需要的方法。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;细粒度的接口&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;接口应该尽量细化，每个接口只包含客户端需要的方法。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;避免臃肿的接口&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;不要将多个功能耦合在一个接口中，避免客户端实现不需要的方法。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;为什么需要接口隔离原则&#34;&gt;&lt;strong&gt;为什么需要接口隔离原则&lt;/strong&gt;
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;提高代码的可维护性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;细粒度的接口更容易修改和维护，因为修改一个接口的影响范围更小。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;提高代码的可复用性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;细粒度的接口更容易被复用，因为它们的功能更加明确和独立。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;降低耦合性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;细粒度的接口减少了类之间的依赖关系，降低了系统的耦合性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接口隔离原则强调客户端不应该依赖于它不需要的接口，接口应该尽量细化，每个接口只包含客户端需要的方法。通过分离接口和使用接口组合，可以实现接口隔离原则，提高代码的可维护性、可复用性和可扩展性。&lt;/p&gt;
 &lt;p&gt;接口隔离原则和单一职责都是为了提高类的内聚性、降低它们之间的耦合性，体现了封装的思想，但两者是不同的：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;单一职责原则注重的是职责，而接口隔离原则注重的是对接口依赖的隔离。&lt;/li&gt;
 &lt;li&gt;单一职责原则主要是约束类，它针对的是程序中的实现和细节；接口隔离原则主要约束接口，主要针对抽象和程序整体框架的构建。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h5 id=&#34;依赖倒置原则&#34;&gt;依赖倒置原则
-&lt;/h5&gt;&lt;p&gt;依赖倒置原则是实现开闭原则的重要途径之一，它降低了客户与实现模块之间的耦合。&lt;/p&gt;
+&lt;h2 id=&#34;依赖倒置原则dependency-inversion-principle-dip&#34;&gt;依赖倒置原则**（Dependency Inversion Principle, DIP）**
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;高层模块不应该依赖于低层模块，二者都应该依赖于抽象。抽象不应该依赖于细节，细节应该依赖于抽象。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;设计应该依赖于抽象而不是具体实现，从而降低模块之间的耦合性，提高系统的灵活性和可维护性。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;高层模块&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;高层模块是指包含业务逻辑的模块，通常负责系统的核心功能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;低层模块&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;低层模块是指提供基础服务的模块，通常负责具体的实现细节。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;抽象&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;抽象是指接口或抽象类，定义了模块之间的契约。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;细节&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;细节是指具体的实现类，负责实现抽象定义的契约。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;为什么需要依赖倒置原则&#34;&gt;&lt;strong&gt;为什么需要依赖倒置原则&lt;/strong&gt;
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;降低耦合性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;高层模块和低层模块都依赖于抽象，减少了模块之间的直接依赖关系。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;提高代码的可维护性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;修改具体实现不会影响高层模块，降低了引入新错误的风险。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;提高代码的可复用性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;抽象接口更容易被复用，因为它们不依赖于具体实现。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;提高系统的灵活性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;通过替换具体实现，可以轻松扩展系统的功能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;依赖倒置原则是实现开闭原则的重要途径之一，它降低了客户与实现模块之间的耦合。&lt;/p&gt;
 &lt;p&gt;由于在软件设计中，细节具有多变性，而抽象层则相对稳定，因此以抽象为基础搭建起来的架构要比以细节为基础搭建起来的架构要稳定得多。这里的抽象指的是接口或者抽象类，而细节是指具体的实现类。&lt;/p&gt;
 &lt;p&gt;使用接口或者抽象类的目的是制定好规范和契约，而不去涉及任何具体的操作，把展现细节的任务交给它们的实现类去完成。&lt;/p&gt;
-&lt;h5 id=&#34;合成复用原则crp&#34;&gt;合成复用原则(CRP)
-&lt;/h5&gt;&lt;p&gt;合成复用原则就是在一个新的对象里通过关联关系（包括组合关系和聚合关系）来使用一些已有的对象，使之成为新对象的一部分；新对象通过委派调用已有对象的方法达到复用功能的目的。&lt;/p&gt;
+&lt;h2 id=&#34;合成复用原则composite-reuse-principle-crp&#34;&gt;合成复用原则**（Composite Reuse Principle, CRP）**
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;尽量使用对象组合（Composition）或聚合（Aggregation），而不是继承（Inheritance）来实现代码复用。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;通过将已有对象组合成新的对象来实现功能，而不是通过继承已有的类来扩展功能。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;组合（Composition）&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;组合是一种强关联关系，表示整体对象拥有部分对象，部分对象的生命周期与整体对象一致。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;聚合（Aggregation）&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;聚合是一种弱关联关系，表示整体对象包含部分对象，但部分对象的生命周期与整体对象无关。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;继承（Inheritance）&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;继承是一种类与类之间的关系，子类继承父类的属性和方法。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;为什么需要合成复用原则&#34;&gt;&lt;strong&gt;为什么需要合成复用原则&lt;/strong&gt;
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;降低耦合性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;组合和聚合比继承的耦合性更低，因为组合和聚合是通过接口或抽象类实现的，而不是直接依赖于具体实现。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;提高代码的灵活性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;组合和聚合可以动态地替换部分对象，而继承是静态的，无法在运行时改变。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;提高代码的可维护性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;组合和聚合使得代码更容易修改和扩展，因为修改一个类不会影响其他类。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;避免继承的缺点&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;继承可能导致类层次结构过于复杂，增加代码的复杂性和维护成本。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;合成复用原则就是在一个新的对象里通过关联关系（包括组合关系和聚合关系）来使用一些已有的对象，使之成为新对象的一部分；新对象通过委派调用已有对象的方法达到复用功能的目的。&lt;/p&gt;
 &lt;p&gt;简言之：复用时要尽量使用组合/聚合关系（关联关系），少用继承。&lt;/p&gt;
+&lt;h2 id=&#34;好莱坞法则hollywood-principle&#34;&gt;&lt;strong&gt;好莱坞法则（Hollywood Principle）&lt;/strong&gt;
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;不要调用我们，我们会调用你。（Don&amp;rsquo;t call us, we&amp;rsquo;ll call you.）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;高层模块（如框架或系统）负责控制流程，低层模块（如具体实现）只需提供具体的功能实现，而不需要主动调用高层模块。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;控制反转（Inversion of Control, IoC）&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;好莱坞法则体现了控制反转的思想，即高层模块控制流程，低层模块被动响应。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;依赖注入（Dependency Injection, DI）&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;好莱坞法则通常通过依赖注入实现，高层模块将依赖注入到低层模块中，而不是低层模块主动获取依赖。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;为什么需要好莱坞法则&#34;&gt;&lt;strong&gt;为什么需要好莱坞法则&lt;/strong&gt;
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;降低耦合性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;低层模块不需要知道高层模块的存在，减少了模块之间的依赖关系。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;提高代码的可维护性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;高层模块控制流程，低层模块只需关注具体实现，代码更容易修改和维护。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;提高代码的可复用性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;低层模块可以在不同的高层模块中复用，因为它们不依赖于具体的高层模块。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;好莱坞法则强调高层模块控制流程，低层模块被动响应，体现了控制反转和依赖注入的思想。通过好莱坞法则，可以降低模块之间的耦合性，提高代码的可维护性和可复用性。&lt;/p&gt;
 &lt;hr&gt;
-&lt;h4 id=&#34;类图基础&#34;&gt;类图基础
-&lt;/h4&gt;</description>
+&lt;h1 id=&#34;类图基础&#34;&gt;类图基础
+&lt;/h1&gt;&lt;h3 id=&#34;1-uml-类图的基本元素&#34;&gt;&lt;strong&gt;1. UML 类图的基本元素&lt;/strong&gt;
+&lt;/h3&gt;&lt;h4 id=&#34;1类class&#34;&gt;&lt;strong&gt;（1）类（Class）&lt;/strong&gt;
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;表示&lt;/strong&gt;：矩形框，分为三部分：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;类名&lt;/strong&gt;：顶部，粗体显示。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;属性&lt;/strong&gt;：中间，格式为 &lt;code&gt;[可见性] 属性名: 类型 [= 默认值]&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;方法&lt;/strong&gt;：底部，格式为 &lt;code&gt;[可见性] 方法名(参数列表): 返回类型&lt;/code&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;示例&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;+---------------------+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Person&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;         &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+---------------------+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;age&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;          &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+---------------------+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;getName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;setAge&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;age&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+---------------------+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;2接口interface&#34;&gt;&lt;strong&gt;（2）接口（Interface）&lt;/strong&gt;
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;表示&lt;/strong&gt;：矩形框，顶部有 &lt;code&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/code&gt; 标识，分为两部分：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;接口名&lt;/strong&gt;：顶部，粗体显示。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;方法&lt;/strong&gt;：底部，格式与类的方法相同。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;示例&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;复制&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;+---------------------+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;interface&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;       &lt;span class=&#34;err&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;|&lt;/span&gt;      &lt;span class=&#34;nc&#34;&gt;Runnable&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;       &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+---------------------+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;run&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;       &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+---------------------+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;3关系relationships&#34;&gt;&lt;strong&gt;（3）关系（Relationships）&lt;/strong&gt;
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;继承（Inheritance）&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;表示&lt;/strong&gt;：空心三角形箭头，从子类指向父类。&lt;/p&gt;
+&lt;img src=&#34;1.png&#34; style=&#34;zoom: 33%;&#34; /&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;实现（Implementation）&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;表示&lt;/strong&gt;：空心三角形箭头，从实现类指向接口。&lt;/p&gt;
+&lt;img src=&#34;2.png&#34; alt=&#34;image-20250101154318395&#34; style=&#34;zoom: 33%;&#34; /&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;关联（Association）&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;表示&lt;/strong&gt;：实线箭头，从源类指向目标类，可以标注角色名和多重性。&lt;/p&gt;
+&lt;img src=&#34;3.png&#34; alt=&#34;image-20250101154419097&#34; style=&#34;zoom:33%;&#34; /&gt;
+&lt;p&gt;**「关联」**关系通常表现为类的私有属性。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Plan&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Climate&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;climate&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;聚合（Aggregation）&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;表示&lt;/strong&gt;：空心菱形箭头，从整体类指向部分类。&lt;/p&gt;
+&lt;img src=&#34;4.png&#34; alt=&#34;image-20250101155320593&#34; style=&#34;zoom:33%;&#34; /&gt;
+&lt;p&gt;&lt;strong&gt;「聚合」&lt;/strong&gt; 是关联关系的一种，表示一种弱的“拥有”关系。&lt;/p&gt;
+&lt;p&gt;用Java代码表示大雁是群居动物，每只大雁都属于一个雁群，一个雁群可以有多只大雁。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;WildGooseAggregate&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;List&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;WildGoose&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;wideGooses&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;组合（Composition）&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;表示&lt;/strong&gt;：实心菱形箭头，从整体类指向部分类。&lt;/p&gt;
+&lt;img src=&#34;5.png&#34; alt=&#34;image-20250101155025822&#34; style=&#34;zoom:33%;&#34; /&gt;
+&lt;p&gt;&lt;strong&gt;「组合」&lt;/strong&gt; 是关联关系的一种，表示一种强的“拥有”关系。体现了严格的部分和整体的关系。部分和整体的生命周期一样。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Bird&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Wing&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;wing&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Bird&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;wing&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Wing&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;依赖（Dependency）&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;表示&lt;/strong&gt;：虚线箭头，从依赖类指向被依赖类。&lt;/p&gt;
+&lt;img src=&#34;6.png&#34; alt=&#34;image-20250101154551809&#34; style=&#34;zoom:33%;&#34; /&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;「依赖」&lt;/strong&gt; 关系体现为局部变量、方法的形参，或者对静态方法的调用。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Programmer&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;work&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Computer&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;computer1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//方法参数   ----   依赖方式一&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Computer&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;computer2&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Computer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//局部变量   ----   依赖方式二&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;price&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Computer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;do&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//静态方法调用     ----   依赖方式三&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h4 id=&#34;all-in-one的例子&#34;&gt;All in One的例子
+&lt;/h4&gt;&lt;p&gt;前面介绍了类之间的6种关系。为了更好地理解这6种关系。下面使用一个完整的例子（汽车）。该示例中包含了这6种关系。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://deisbeir.github.io/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E7%A1%80/7.png&#34;
+	width=&#34;1438&#34;
+	height=&#34;748&#34;
+	srcset=&#34;https://deisbeir.github.io/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E7%A1%80/7_hu17449079094810389811.png 480w, https://deisbeir.github.io/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E7%A1%80/7_hu17807893901974771535.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250101155513604&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;192&#34;
+		data-flex-basis=&#34;461px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;说明：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;车的类图结构为，表示车是一个抽象类；&lt;/li&gt;
+&lt;li&gt;它有两个继承类：小汽车和自行车；它们之间的关系为**「实现」** 关系，使用带空心箭头的虚线表示；&lt;/li&gt;
+&lt;li&gt;小汽车为与SUV之间也是**「继承」** 关系，它们之间的关系为泛化关系，使用带空心箭头的实线表示；&lt;/li&gt;
+&lt;li&gt;小汽车与发动机之间是**「组合」** 关系，使用带实心箭头的实线表示；&lt;/li&gt;
+&lt;li&gt;学生与班级之间是**「聚合」** 关系，使用带空心箭头的实线表示；&lt;/li&gt;
+&lt;li&gt;学生与身份证之间为**「关联」** 关系，使用一根实线表示；&lt;/li&gt;
+&lt;li&gt;学生上学需要用到自行车，与自行车是一种**「依赖」** 关系，使用带箭头的虚线表示；&lt;/li&gt;
+&lt;/ul&gt;
+</description>
         </item>
         <item>
         <title>Hellow</title>

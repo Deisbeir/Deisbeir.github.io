@@ -233,15 +233,91 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
+    <li><a href="#什么是设计模式">什么是设计模式？</a></li>
+    <li><a href="#为什么应该学习设计模式">为什么应该学习设计模式？</a></li>
+    <li><a href="#每个设计模式都可以通过以下几个部分来理解">每个设计模式都可以通过以下几个部分来理解</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#单一职责原则single-responsibility-principle-srp">单一职责原则**（Single Responsibility Principle, SRP）**</a>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#为什么需要单一职责原则"><strong>为什么需要单一职责原则</strong></a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#开放封闭原则openclosed-principle-ocp">开放封闭原则**（Open/Closed Principle, OCP）**</a>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#为什么需要开放封闭原则"><strong>为什么需要开放封闭原则</strong></a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#里式替换原则liskov-substitution-principle-lsp">里式替换原则**（Liskov Substitution Principle, LSP）**</a>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#为什么需要里式替换原则"><strong>为什么需要里式替换原则</strong></a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#迪米特法则law-of-demeter-lod">迪米特法则**（Law of Demeter, LoD）**</a>
+      <ol>
+        <li><a href="#为什么需要迪米特法则"><strong>为什么需要迪米特法则</strong></a></li>
+      </ol>
+    </li>
+    <li><a href="#接口隔离原则interface-segregation-principle-isp">接口隔离原则**（Interface Segregation Principle, ISP）**</a>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#为什么需要接口隔离原则"><strong>为什么需要接口隔离原则</strong></a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#依赖倒置原则dependency-inversion-principle-dip">依赖倒置原则**（Dependency Inversion Principle, DIP）**</a>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#为什么需要依赖倒置原则"><strong>为什么需要依赖倒置原则</strong></a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#合成复用原则composite-reuse-principle-crp">合成复用原则**（Composite Reuse Principle, CRP）**</a>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#为什么需要合成复用原则"><strong>为什么需要合成复用原则</strong></a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#好莱坞法则hollywood-principle"><strong>好莱坞法则（Hollywood Principle）</strong></a>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#为什么需要好莱坞法则"><strong>为什么需要好莱坞法则</strong></a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
     <li>
       <ol>
-        <li><a href="#常见设计模式总结">常见设计模式总结</a>
+        <li><a href="#1-uml-类图的基本元素"><strong>1. UML 类图的基本元素</strong></a>
           <ol>
-            <li><a href="#什么是设计模式">什么是设计模式？</a></li>
-            <li><a href="#为什么应该学习设计模式">为什么应该学习设计模式？</a></li>
-            <li><a href="#每个设计模式都可以通过以下几个部分来理解">每个设计模式都可以通过以下几个部分来理解</a></li>
-            <li><a href="#六大设计原则">六大设计原则</a></li>
-            <li><a href="#类图基础">类图基础</a></li>
+            <li><a href="#1类class"><strong>（1）类（Class）</strong></a></li>
+            <li><a href="#2接口interface"><strong>（2）接口（Interface）</strong></a></li>
+            <li><a href="#3关系relationships"><strong>（3）关系（Relationships）</strong></a></li>
+            <li><a href="#all-in-one的例子">All in One的例子</a></li>
           </ol>
         </li>
       </ol>
@@ -323,59 +399,580 @@
     <section class="article-content">
     
     
-    <h3 id="常见设计模式总结">常见设计模式总结
-</h3><p>我打算再理一遍常见的设计模式以加深印象，在这里先记录最基本的一些概念。</p>
+    <h1 id="常见设计模式总结">常见设计模式总结
+</h1><p>我打算再理一遍常见的设计模式以加深印象，在这里先记录最基本的一些概念。</p>
 <hr>
-<h4 id="什么是设计模式">什么是设计模式？
-</h4><p>设计模式是软件设计中常见问题的典型解决方案。它们就像预制的蓝图，你可以根据需要进行定制，以解决代码中反复出现的设计问题。</p>
+<h2 id="什么是设计模式">什么是设计模式？
+</h2><p>设计模式是软件设计中常见问题的典型解决方案。它们就像预制的蓝图，你可以根据需要进行定制，以解决代码中反复出现的设计问题。</p>
 <p>模式不是一段具体的代码，而是一个解决特定问题的通用概念。你可以遵循模式的思路，实现一个适合你自己程序实际情况的解决方案。</p>
-<h4 id="为什么应该学习设计模式">为什么应该学习设计模式？
-</h4><p>设计模式是解决软件设计中常见问题的经过验证的工具包。它会教你如何使用面向对象设计的原则来解决各种问题。</p>
+<h2 id="为什么应该学习设计模式">为什么应该学习设计模式？
+</h2><p>设计模式是解决软件设计中常见问题的经过验证的工具包。它会教你如何使用面向对象设计的原则来解决各种问题。</p>
 <p>设计模式定义了一种通用的语言，团队成员可以使用它更高效地进行沟通。能更好的应对变更。同时在解决某些问题时会给出灵感。</p>
 <p>实际上，不使用设计模式也可以完成很多程序、项目，但使用设计模式会帮你避免后续的很多麻烦、节约沟通成本、使你的代码更加优雅。</p>
-<h4 id="每个设计模式都可以通过以下几个部分来理解">每个设计模式都可以通过以下几个部分来理解
-</h4><ol>
+<h2 id="每个设计模式都可以通过以下几个部分来理解">每个设计模式都可以通过以下几个部分来理解
+</h2><ol>
 <li><strong>模式的意图</strong>：简要描述问题和解决方案。</li>
 <li><strong>动机</strong>：进一步解释问题以及模式如何提供解决方案。</li>
 <li><strong>类结构</strong>：展示模式中每个部分以及它们之间的关系。</li>
 <li><strong>代码示例</strong>：使用一种流行的编程语言编写的代码示例，帮助更容易理解模式背后的思想。</li>
 </ol>
 <hr>
-<h4 id="六大设计原则">六大设计原则
-</h4><h5 id="单一职责原则">单一职责原则
-</h5><p>单一职责原则（Single Responsibility Principle，SRP）又称单一功能原则。这里的职责是指类变化的原因，单一职责原则规定一个类应该有且仅有一个引起它变化的原因，否则类应该被拆分（There should never be more than one reason for a class to change）。</p>
+<h1 id="七大设计原则">七大设计原则
+</h1><h2 id="单一职责原则single-responsibility-principle-srp">单一职责原则**（Single Responsibility Principle, SRP）**
+</h2><p><strong>一个类应该只有一个引起它变化的原因。</strong></p>
+<p>单一职责原则又称单一功能原则。这里的职责是指类变化的原因，单一职责原则规定一个类应该有且仅有一个引起它变化的原因，否则类应该被拆分（There should never be more than one reason for a class to change）。</p>
+<ul>
+<li><strong>职责</strong>：
+<ul>
+<li>职责是指类或模块的功能或任务。</li>
+</ul>
+</li>
+<li><strong>单一职责</strong>：
+<ul>
+<li>一个类或模块应该只负责一项功能或任务，而不是将多个功能或任务耦合在一起。</li>
+</ul>
+</li>
+</ul>
+<h4 id="为什么需要单一职责原则"><strong>为什么需要单一职责原则</strong>
+</h4><ul>
+<li><strong>提高代码的可维护性</strong>：
+<ul>
+<li>当一个类只负责一项职责时，修改代码的影响范围更小，降低了引入新错误的风险。</li>
+</ul>
+</li>
+<li><strong>提高代码的可复用性</strong>：
+<ul>
+<li>职责单一的类更容易被复用，因为它们的功能更加明确和独立。</li>
+</ul>
+</li>
+<li><strong>降低耦合性</strong>：
+<ul>
+<li>职责单一的类与其他类的依赖关系更少，降低了系统的耦合性。</li>
+</ul>
+</li>
+<li><strong>提高代码的可读性</strong>：
+<ul>
+<li>职责单一的类更容易理解和维护，因为它们的代码更加简洁和清晰。</li>
+</ul>
+</li>
+</ul>
 <p>该原则提出对象不应该承担太多职责，如果一个对象承担了太多的职责，至少存在以下两个缺点：</p>
 <ol>
 <li>一个职责的变化可能会削弱或者抑制这个类实现其他职责的能力；</li>
 <li>当客户端需要该对象的某一个职责时，不得不将其他不需要的职责全都包含进来，从而造成冗余代码或代码的浪费。</li>
 </ol>
-<h5 id="开放封闭原则">开放封闭原则
-</h5><p>开闭原则的实现方法：可以通过“抽象约束、封装变化”来实现开闭原则，即通过接口或者抽象类为软件实体定义一个相对稳定的抽象层，而将相同的可变因素封装在相同的具体实现类中。</p>
+<h2 id="开放封闭原则openclosed-principle-ocp">开放封闭原则**（Open/Closed Principle, OCP）**
+</h2><p><strong>软件实体（类、模块、函数等）应该对扩展开放，但对修改封闭。</strong></p>
+<p>软件的设计应该允许在不修改现有代码的情况下，通过扩展来增加新的功能。</p>
+<ul>
+<li><strong>对扩展开放</strong>：
+<ul>
+<li>当需求变化时，可以通过添加新的代码来扩展系统的功能，而不是修改现有的代码。</li>
+</ul>
+</li>
+<li><strong>对修改封闭</strong>：
+<ul>
+<li>现有的代码应该尽量保持稳定，避免因为需求变化而频繁修改。</li>
+</ul>
+</li>
+</ul>
+<h4 id="为什么需要开放封闭原则"><strong>为什么需要开放封闭原则</strong>
+</h4><ul>
+<li><strong>提高代码的可维护性</strong>：
+<ul>
+<li>减少对现有代码的修改，降低引入新错误的风险。</li>
+</ul>
+</li>
+<li><strong>提高代码的可复用性</strong>：
+<ul>
+<li>通过扩展而不是修改，可以更好地复用现有的代码。</li>
+</ul>
+</li>
+<li><strong>降低耦合性</strong>：
+<ul>
+<li>通过抽象和接口，减少模块之间的依赖关系。</li>
+</ul>
+</li>
+</ul>
+<p>开闭原则的实现方法：可以通过“抽象约束、封装变化”来实现开闭原则，即通过接口或者抽象类为软件实体定义一个相对稳定的抽象层，而将相同的可变因素封装在相同的具体实现类中。</p>
 <p>因为抽象灵活性好，适应性广，只要抽象的合理，可以基本保持软件架构的稳定。而软件中易变的细节可以从抽象派生来的实现类来进行扩展，当软件需要发生变化时，只需要根据需求重新派生一个实现类来扩展就可以了。</p>
-<h5 id="里式替换原则">里式替换原则
-</h5><p>里氏替换原则主要阐述了有关继承的一些原则，也就是什么时候应该使用继承，什么时候不应该使用继承，以及其中蕴含的原理。里氏替换原是继承复用的基础，它反映了基类与子类之间的关系，是对开闭原则的补充，是对实现抽象化的具体步骤的规范。</p>
-<h5 id="迪米特法则">迪米特法则
-</h5><p>迪米特法则（Law of Demeter，LoD）又叫作最少知识原则（Least Knowledge Principle，LKP)。</p>
-<p>迪米特法则的定义是：只与你的直接朋友交谈，不跟“陌生人”说话（Talk only to your immediate friends and not to strangers）。其含义是：如果两个软件实体无须直接通信，那么就不应当发生直接的相互调用，可以通过第三方转发该调用。其目的是降低类之间的耦合度，提高模块的相对独立性。</p>
-<p>迪米特法则中的“朋友”是指：当前对象本身、当前对象的成员对象、当前对象所创建的对象、当前对象的方法参数等，这些对象同当前对象存在关联、聚合或组合关系，可以直接访问这些对象的方法。</p>
-<h5 id="接口隔离原则">接口隔离原则
-</h5><p>接口隔离原则（Interface Segregation Principle，ISP）要求程序员尽量将臃肿庞大的接口拆分成更小的和更具体的接口，让接口中只包含客户感兴趣的方法。</p>
-<p>要为各个类建立它们需要的专用接口，而不要试图去建立一个很庞大的接口供所有依赖它的类去调用。</p>
+<p>开放封闭原则是面向对象设计中的重要原则，强调软件实体应该对扩展开放，但对修改封闭。通过使用抽象、策略模式和依赖注入等方法，可以实现开放封闭原则，提高代码的可维护性、可复用性和可扩展性。</p>
+<h2 id="里式替换原则liskov-substitution-principle-lsp">里式替换原则**（Liskov Substitution Principle, LSP）**
+</h2><p><strong>子类型必须能够替换其基类型，而不会影响程序的正确性。</strong></p>
+<p>如果一个程序使用了一个基类，那么它应该能够使用该基类的任何子类，而不会产生错误或异常。</p>
+<ul>
+<li><strong>子类型替换基类型</strong>：
+<ul>
+<li>子类应该能够完全替代基类，而不会影响程序的正确性。</li>
+</ul>
+</li>
+<li><strong>行为一致性</strong>：
+<ul>
+<li>子类应该保持基类的行为规范，不能改变基类的预期行为。</li>
+</ul>
+</li>
+</ul>
+<h4 id="为什么需要里式替换原则"><strong>为什么需要里式替换原则</strong>
+</h4><ul>
+<li><strong>提高代码的可复用性</strong>：
+<ul>
+<li>子类可以替代基类，使得代码更容易复用。</li>
+</ul>
+</li>
+<li><strong>提高代码的可维护性</strong>：
+<ul>
+<li>子类保持基类的行为规范，降低了引入新错误的风险。</li>
+</ul>
+</li>
+<li><strong>降低耦合性</strong>：
+<ul>
+<li>子类和基类之间的关系更加清晰，降低了系统的耦合性。</li>
+</ul>
+</li>
+</ul>
+<p>里式替换原则是面向对象设计中的重要原则，强调子类型必须能够替换其基类型，而不会影响程序的正确性。通过保持子类与基类的行为一致性、不强化前置条件和不弱化后置条件，可以实现里式替换原则，提高代码的可复用性、可维护性和可扩展性。</p>
+<p>里氏替换原则是继承复用的基础，它反映了基类与子类之间的关系，是对开闭原则的补充，是对实现抽象化的具体步骤的规范。</p>
+<h2 id="迪米特法则law-of-demeter-lod">迪米特法则**（Law of Demeter, LoD）**
+</h2><p>迪米特法则（Law of Demeter，LoD）又叫作最少知识原则（Least Knowledge Principle，LKP)。</p>
+<p><strong>一个对象应该对其他对象有最少的了解，只与直接的朋友通信。</strong></p>
+<ul>
+<li><strong>直接的朋友</strong>：
+<ul>
+<li>直接的朋友是指当前对象的成员变量、方法参数、方法返回值等。</li>
+</ul>
+</li>
+<li><strong>最少的知识</strong>：
+<ul>
+<li>一个类应该只与直接的朋友交互，而不应该了解或操作朋友的朋友。</li>
+</ul>
+</li>
+</ul>
+<h3 id="为什么需要迪米特法则"><strong>为什么需要迪米特法则</strong>
+</h3><ul>
+<li><strong>降低耦合性</strong>：
+<ul>
+<li>减少类之间的依赖关系，降低系统的耦合性。</li>
+</ul>
+</li>
+<li><strong>提高代码的可维护性</strong>：
+<ul>
+<li>类的职责更加明确，修改一个类的影响范围更小。</li>
+</ul>
+</li>
+<li><strong>提高代码的可复用性</strong>：
+<ul>
+<li>类的依赖关系更少，更容易被复用。</li>
+</ul>
+</li>
+</ul>
+<p>迪米特法则强调一个对象应该对其他对象有最少的了解，只与直接的朋友通信。通过只与直接的朋友交互和使用中介类，可以实现迪米特法则，降低系统的耦合性，提高代码的可维护性和可复用性。</p>
+<h2 id="接口隔离原则interface-segregation-principle-isp">接口隔离原则**（Interface Segregation Principle, ISP）**
+</h2><p><strong>客户端不应该依赖于它不需要的接口。</strong></p>
+<p>一个类不应该被迫实现它不需要的方法，接口应该尽量细化，每个接口只包含客户端需要的方法。</p>
+<ul>
+<li><strong>细粒度的接口</strong>：
+<ul>
+<li>接口应该尽量细化，每个接口只包含客户端需要的方法。</li>
+</ul>
+</li>
+<li><strong>避免臃肿的接口</strong>：
+<ul>
+<li>不要将多个功能耦合在一个接口中，避免客户端实现不需要的方法。</li>
+</ul>
+</li>
+</ul>
+<h4 id="为什么需要接口隔离原则"><strong>为什么需要接口隔离原则</strong>
+</h4><ul>
+<li><strong>提高代码的可维护性</strong>：
+<ul>
+<li>细粒度的接口更容易修改和维护，因为修改一个接口的影响范围更小。</li>
+</ul>
+</li>
+<li><strong>提高代码的可复用性</strong>：
+<ul>
+<li>细粒度的接口更容易被复用，因为它们的功能更加明确和独立。</li>
+</ul>
+</li>
+<li><strong>降低耦合性</strong>：
+<ul>
+<li>细粒度的接口减少了类之间的依赖关系，降低了系统的耦合性。</li>
+</ul>
+</li>
+</ul>
+<p>接口隔离原则强调客户端不应该依赖于它不需要的接口，接口应该尽量细化，每个接口只包含客户端需要的方法。通过分离接口和使用接口组合，可以实现接口隔离原则，提高代码的可维护性、可复用性和可扩展性。</p>
 <p>接口隔离原则和单一职责都是为了提高类的内聚性、降低它们之间的耦合性，体现了封装的思想，但两者是不同的：</p>
 <ul>
 <li>单一职责原则注重的是职责，而接口隔离原则注重的是对接口依赖的隔离。</li>
 <li>单一职责原则主要是约束类，它针对的是程序中的实现和细节；接口隔离原则主要约束接口，主要针对抽象和程序整体框架的构建。</li>
 </ul>
-<h5 id="依赖倒置原则">依赖倒置原则
-</h5><p>依赖倒置原则是实现开闭原则的重要途径之一，它降低了客户与实现模块之间的耦合。</p>
+<h2 id="依赖倒置原则dependency-inversion-principle-dip">依赖倒置原则**（Dependency Inversion Principle, DIP）**
+</h2><p><strong>高层模块不应该依赖于低层模块，二者都应该依赖于抽象。抽象不应该依赖于细节，细节应该依赖于抽象。</strong></p>
+<p>设计应该依赖于抽象而不是具体实现，从而降低模块之间的耦合性，提高系统的灵活性和可维护性。</p>
+<ul>
+<li><strong>高层模块</strong>：
+<ul>
+<li>高层模块是指包含业务逻辑的模块，通常负责系统的核心功能。</li>
+</ul>
+</li>
+<li><strong>低层模块</strong>：
+<ul>
+<li>低层模块是指提供基础服务的模块，通常负责具体的实现细节。</li>
+</ul>
+</li>
+<li><strong>抽象</strong>：
+<ul>
+<li>抽象是指接口或抽象类，定义了模块之间的契约。</li>
+</ul>
+</li>
+<li><strong>细节</strong>：
+<ul>
+<li>细节是指具体的实现类，负责实现抽象定义的契约。</li>
+</ul>
+</li>
+</ul>
+<h4 id="为什么需要依赖倒置原则"><strong>为什么需要依赖倒置原则</strong>
+</h4><ul>
+<li><strong>降低耦合性</strong>：
+<ul>
+<li>高层模块和低层模块都依赖于抽象，减少了模块之间的直接依赖关系。</li>
+</ul>
+</li>
+<li><strong>提高代码的可维护性</strong>：
+<ul>
+<li>修改具体实现不会影响高层模块，降低了引入新错误的风险。</li>
+</ul>
+</li>
+<li><strong>提高代码的可复用性</strong>：
+<ul>
+<li>抽象接口更容易被复用，因为它们不依赖于具体实现。</li>
+</ul>
+</li>
+<li><strong>提高系统的灵活性</strong>：
+<ul>
+<li>通过替换具体实现，可以轻松扩展系统的功能。</li>
+</ul>
+</li>
+</ul>
+<p>依赖倒置原则是实现开闭原则的重要途径之一，它降低了客户与实现模块之间的耦合。</p>
 <p>由于在软件设计中，细节具有多变性，而抽象层则相对稳定，因此以抽象为基础搭建起来的架构要比以细节为基础搭建起来的架构要稳定得多。这里的抽象指的是接口或者抽象类，而细节是指具体的实现类。</p>
 <p>使用接口或者抽象类的目的是制定好规范和契约，而不去涉及任何具体的操作，把展现细节的任务交给它们的实现类去完成。</p>
-<h5 id="合成复用原则crp">合成复用原则(CRP)
-</h5><p>合成复用原则就是在一个新的对象里通过关联关系（包括组合关系和聚合关系）来使用一些已有的对象，使之成为新对象的一部分；新对象通过委派调用已有对象的方法达到复用功能的目的。</p>
+<h2 id="合成复用原则composite-reuse-principle-crp">合成复用原则**（Composite Reuse Principle, CRP）**
+</h2><p><strong>尽量使用对象组合（Composition）或聚合（Aggregation），而不是继承（Inheritance）来实现代码复用。</strong></p>
+<p>通过将已有对象组合成新的对象来实现功能，而不是通过继承已有的类来扩展功能。</p>
+<ul>
+<li><strong>组合（Composition）</strong>：
+<ul>
+<li>组合是一种强关联关系，表示整体对象拥有部分对象，部分对象的生命周期与整体对象一致。</li>
+</ul>
+</li>
+<li><strong>聚合（Aggregation）</strong>：
+<ul>
+<li>聚合是一种弱关联关系，表示整体对象包含部分对象，但部分对象的生命周期与整体对象无关。</li>
+</ul>
+</li>
+<li><strong>继承（Inheritance）</strong>：
+<ul>
+<li>继承是一种类与类之间的关系，子类继承父类的属性和方法。</li>
+</ul>
+</li>
+</ul>
+<h4 id="为什么需要合成复用原则"><strong>为什么需要合成复用原则</strong>
+</h4><ul>
+<li><strong>降低耦合性</strong>：
+<ul>
+<li>组合和聚合比继承的耦合性更低，因为组合和聚合是通过接口或抽象类实现的，而不是直接依赖于具体实现。</li>
+</ul>
+</li>
+<li><strong>提高代码的灵活性</strong>：
+<ul>
+<li>组合和聚合可以动态地替换部分对象，而继承是静态的，无法在运行时改变。</li>
+</ul>
+</li>
+<li><strong>提高代码的可维护性</strong>：
+<ul>
+<li>组合和聚合使得代码更容易修改和扩展，因为修改一个类不会影响其他类。</li>
+</ul>
+</li>
+<li><strong>避免继承的缺点</strong>：
+<ul>
+<li>继承可能导致类层次结构过于复杂，增加代码的复杂性和维护成本。</li>
+</ul>
+</li>
+</ul>
+<p>合成复用原则就是在一个新的对象里通过关联关系（包括组合关系和聚合关系）来使用一些已有的对象，使之成为新对象的一部分；新对象通过委派调用已有对象的方法达到复用功能的目的。</p>
 <p>简言之：复用时要尽量使用组合/聚合关系（关联关系），少用继承。</p>
+<h2 id="好莱坞法则hollywood-principle"><strong>好莱坞法则（Hollywood Principle）</strong>
+</h2><p><strong>不要调用我们，我们会调用你。（Don&rsquo;t call us, we&rsquo;ll call you.）</strong></p>
+<p>高层模块（如框架或系统）负责控制流程，低层模块（如具体实现）只需提供具体的功能实现，而不需要主动调用高层模块。</p>
+<ul>
+<li><strong>控制反转（Inversion of Control, IoC）</strong>：
+<ul>
+<li>好莱坞法则体现了控制反转的思想，即高层模块控制流程，低层模块被动响应。</li>
+</ul>
+</li>
+<li><strong>依赖注入（Dependency Injection, DI）</strong>：
+<ul>
+<li>好莱坞法则通常通过依赖注入实现，高层模块将依赖注入到低层模块中，而不是低层模块主动获取依赖。</li>
+</ul>
+</li>
+</ul>
+<h4 id="为什么需要好莱坞法则"><strong>为什么需要好莱坞法则</strong>
+</h4><ul>
+<li><strong>降低耦合性</strong>：
+<ul>
+<li>低层模块不需要知道高层模块的存在，减少了模块之间的依赖关系。</li>
+</ul>
+</li>
+<li><strong>提高代码的可维护性</strong>：
+<ul>
+<li>高层模块控制流程，低层模块只需关注具体实现，代码更容易修改和维护。</li>
+</ul>
+</li>
+<li><strong>提高代码的可复用性</strong>：
+<ul>
+<li>低层模块可以在不同的高层模块中复用，因为它们不依赖于具体的高层模块。</li>
+</ul>
+</li>
+</ul>
+<p>好莱坞法则强调高层模块控制流程，低层模块被动响应，体现了控制反转和依赖注入的思想。通过好莱坞法则，可以降低模块之间的耦合性，提高代码的可维护性和可复用性。</p>
 <hr>
-<h4 id="类图基础">类图基础
-</h4>
+<h1 id="类图基础">类图基础
+</h1><h3 id="1-uml-类图的基本元素"><strong>1. UML 类图的基本元素</strong>
+</h3><h4 id="1类class"><strong>（1）类（Class）</strong>
+</h4><ul>
+<li>
+<p><strong>表示</strong>：矩形框，分为三部分：</p>
+<ol>
+<li><strong>类名</strong>：顶部，粗体显示。</li>
+<li><strong>属性</strong>：中间，格式为 <code>[可见性] 属性名: 类型 [= 默认值]</code>。</li>
+<li><strong>方法</strong>：底部，格式为 <code>[可见性] 方法名(参数列表): 返回类型</code>。</li>
+</ol>
+</li>
+<li>
+<p><strong>示例</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="o">+---------------------+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">|</span><span class="w">      </span><span class="n">Person</span><span class="w">         </span><span class="o">|</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">+---------------------+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">|</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="w">      </span><span class="o">|</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">|</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">age</span><span class="p">:</span><span class="w"> </span><span class="kt">int</span><span class="w">          </span><span class="o">|</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">+---------------------+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">|</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">getName</span><span class="p">():</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="o">|</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">|</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">setAge</span><span class="p">(</span><span class="n">age</span><span class="p">:</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w">  </span><span class="o">|</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">+---------------------+</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h4 id="2接口interface"><strong>（2）接口（Interface）</strong>
+</h4><ul>
+<li>
+<p><strong>表示</strong>：矩形框，顶部有 <code>&lt;&lt;interface&gt;&gt;</code> 标识，分为两部分：</p>
+<ol>
+<li><strong>接口名</strong>：顶部，粗体显示。</li>
+<li><strong>方法</strong>：底部，格式与类的方法相同。</li>
+</ol>
+</li>
+<li>
+<p><strong>示例</strong>：</p>
+<p>复制</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="o">+---------------------+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">|</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="kd">interface</span><span class="err">&gt;&gt;</span>       <span class="err">|</span>
+</span></span><span class="line"><span class="cl"><span class="err">|</span>      <span class="nc">Runnable</span><span class="w">       </span><span class="o">|</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">+---------------------+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">|</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">run</span><span class="p">():</span><span class="w"> </span><span class="kt">void</span><span class="w">       </span><span class="o">|</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">+---------------------+</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h4 id="3关系relationships"><strong>（3）关系（Relationships）</strong>
+</h4><ul>
+<li>
+<p><strong>继承（Inheritance）</strong>：</p>
+<ul>
+<li>
+<p><strong>表示</strong>：空心三角形箭头，从子类指向父类。</p>
+<img src="1.png" style="zoom: 33%;" />
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p><strong>实现（Implementation）</strong>：</p>
+<ul>
+<li>
+<p><strong>表示</strong>：空心三角形箭头，从实现类指向接口。</p>
+<img src="2.png" alt="image-20250101154318395" style="zoom: 33%;" />
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p><strong>关联（Association）</strong>：</p>
+<ul>
+<li>
+<p><strong>表示</strong>：实线箭头，从源类指向目标类，可以标注角色名和多重性。</p>
+<img src="3.png" alt="image-20250101154419097" style="zoom:33%;" />
+<p>**「关联」**关系通常表现为类的私有属性。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Plan</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">Climate</span><span class="w"> </span><span class="n">climate</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p><strong>聚合（Aggregation）</strong>：</p>
+<ul>
+<li>
+<p><strong>表示</strong>：空心菱形箭头，从整体类指向部分类。</p>
+<img src="4.png" alt="image-20250101155320593" style="zoom:33%;" />
+<p><strong>「聚合」</strong> 是关联关系的一种，表示一种弱的“拥有”关系。</p>
+<p>用Java代码表示大雁是群居动物，每只大雁都属于一个雁群，一个雁群可以有多只大雁。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">WildGooseAggregate</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">WildGoose</span><span class="o">&gt;</span><span class="w"> </span><span class="n">wideGooses</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p><strong>组合（Composition）</strong>：</p>
+<ul>
+<li>
+<p><strong>表示</strong>：实心菱形箭头，从整体类指向部分类。</p>
+<img src="5.png" alt="image-20250101155025822" style="zoom:33%;" />
+<p><strong>「组合」</strong> 是关联关系的一种，表示一种强的“拥有”关系。体现了严格的部分和整体的关系。部分和整体的生命周期一样。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Bird</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">Wing</span><span class="w"> </span><span class="n">wing</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="nf">Bird</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="na">wing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Wing</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p><strong>依赖（Dependency）</strong>：</p>
+<ul>
+<li>
+<p><strong>表示</strong>：虚线箭头，从依赖类指向被依赖类。</p>
+<img src="6.png" alt="image-20250101154551809" style="zoom:33%;" />
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>「依赖」</strong> 关系体现为局部变量、方法的形参，或者对静态方法的调用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Programmer</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">work</span><span class="p">(</span><span class="n">Computer</span><span class="w"> </span><span class="n">computer1</span><span class="p">){</span><span class="w"> </span><span class="c1">//方法参数   ----   依赖方式一</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Computer</span><span class="w"> </span><span class="n">computer2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Computer</span><span class="p">();</span><span class="c1">//局部变量   ----   依赖方式二</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Computer</span><span class="p">.</span><span class="na">do</span><span class="p">();</span><span class="c1">//静态方法调用     ----   依赖方式三</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h4 id="all-in-one的例子">All in One的例子
+</h4><p>前面介绍了类之间的6种关系。为了更好地理解这6种关系。下面使用一个完整的例子（汽车）。该示例中包含了这6种关系。</p>
+<p><img src="/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E7%A1%80/7.png"
+	width="1438"
+	height="748"
+	srcset="/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E7%A1%80/7_hu17449079094810389811.png 480w, /p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E7%A1%80/7_hu17807893901974771535.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250101155513604"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="192"
+		data-flex-basis="461px"
+	
+></p>
+<p>说明：</p>
+<ul>
+<li>车的类图结构为，表示车是一个抽象类；</li>
+<li>它有两个继承类：小汽车和自行车；它们之间的关系为**「实现」** 关系，使用带空心箭头的虚线表示；</li>
+<li>小汽车为与SUV之间也是**「继承」** 关系，它们之间的关系为泛化关系，使用带空心箭头的实线表示；</li>
+<li>小汽车与发动机之间是**「组合」** 关系，使用带实心箭头的实线表示；</li>
+<li>学生与班级之间是**「聚合」** 关系，使用带空心箭头的实线表示；</li>
+<li>学生与身份证之间为**「关联」** 关系，使用一根实线表示；</li>
+<li>学生上学需要用到自行车，与自行车是一种**「依赖」** 关系，使用带箭头的虚线表示；</li>
+</ul>
+
 </section>
 
 
@@ -493,7 +1090,9 @@
     <section class="copyright">
         &copy; 
         
-        2024 德斯别尔-Des
+            2024 - 
+        
+        2025 德斯别尔-Des
     </section>
     
     <section class="powerby">
