@@ -766,7 +766,6 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;示例&lt;/strong&gt;：&lt;/p&gt;
-&lt;p&gt;复制&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -901,10 +900,6 @@
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;表示&lt;/strong&gt;：虚线箭头，从依赖类指向被依赖类。&lt;/p&gt;
 &lt;img src=&#34;6.png&#34; alt=&#34;image-20250101154551809&#34; style=&#34;zoom:33%;&#34; /&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;「依赖」&lt;/strong&gt; 关系体现为局部变量、方法的形参，或者对静态方法的调用。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -924,7 +919,11 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;hr&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
 &lt;h4 id=&#34;all-in-one的例子&#34;&gt;All in One的例子
 &lt;/h4&gt;&lt;p&gt;前面介绍了类之间的6种关系。为了更好地理解这6种关系。下面使用一个完整的例子（汽车）。该示例中包含了这6种关系。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://deisbeir.github.io/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E7%A1%80/7.png&#34;
