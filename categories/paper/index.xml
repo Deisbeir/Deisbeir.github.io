@@ -7,13 +7,124 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>德斯别尔-Des</copyright>
-        <lastBuildDate>Sun, 12 Jan 2025 01:31:53 +0800</lastBuildDate><atom:link href="https://deisbeir.github.io/categories/paper/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Mapreduce</title>
+        <lastBuildDate>Mon, 13 Jan 2025 02:11:08 +0800</lastBuildDate><atom:link href="https://deisbeir.github.io/categories/paper/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Spark</title>
+        <link>https://deisbeir.github.io/p/spark/</link>
+        <pubDate>Mon, 13 Jan 2025 02:11:08 +0800</pubDate>
+        
+        <guid>https://deisbeir.github.io/p/spark/</guid>
+        <description>&lt;img src="https://deisbeir.github.io/p/spark/show.png" alt="Featured image of post Spark" /&gt;&lt;h3 id=&#34;论文总结spark-cluster-computing-with-working-sets&#34;&gt;论文总结：Spark: Cluster Computing with Working Sets
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://deisbeir.github.io/p/spark/1.png&#34;
+	width=&#34;1028&#34;
+	height=&#34;183&#34;
+	srcset=&#34;https://deisbeir.github.io/p/spark/1_hu4954486465451657638.png 480w, https://deisbeir.github.io/p/spark/1_hu3001456610837097202.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250113022151489&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;561&#34;
+		data-flex-basis=&#34;1348px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Abstract&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;​		MapReduce and its variants have been highly successful in implementing large-scale data-intensive applications on commodity clusters. However, most of these systems are built around an acyclic data flow model that is not suitable for other popular applications. This paper focuses on one such class of applications: those that reuse a working set of data across multiple parallel operations. This includes many iterative machine learning algorithms, as well as interactive data analysis tools. We propose a new framework called Spark that supports these applications while retaining the scalability and fault tolerance of MapReduce. To achieve these goals, Spark introduces an abstraction called resilient distributed datasets (RDDs). An RDD is a read-only collection of objects partitioned across a set of machines that can be rebuilt if a partition is lost. Spark can outperform Hadoop by 10x in iterative machine learning jobs, and can be used to interactively query a 39 GB dataset with sub-second response time.&lt;/p&gt;
+&lt;h4 id=&#34;背景与问题&#34;&gt;背景与问题
+&lt;/h4&gt;&lt;p&gt;分布式计算模型，如 MapReduce 和其变体，已经在处理大规模数据密集型应用中取得了显著成功。这些模型利用无环数据流（acyclic data flow）实现并行计算，具有扩展性和容错性。&lt;/p&gt;
+&lt;p&gt;然而，这些模型对某些类型的应用支持不足，尤其是需要重复使用数据集的任务，如迭代机器学习算法和交互式数据分析：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;迭代任务&lt;/strong&gt;：许多机器学习算法（如梯度下降）需要对同一数据集进行多次处理。在传统模型中，每次迭代都需要从磁盘重新加载数据，导致性能瓶颈。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;交互式分析&lt;/strong&gt;：在大规模数据集上运行临时查询（如使用 SQL 接口）时，传统模型的高延迟（每次查询需数十秒）限制了交互性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些局限性促使开发一种新的分布式计算框架，以支持高效的迭代和交互式计算，同时保留传统模型的扩展性和容错性。&lt;/p&gt;
+&lt;h4 id=&#34;主要贡献&#34;&gt;主要贡献
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;编程模型&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;Spark 引入了弹性分布式数据集（Resilient Distributed Datasets, RDDs），这是一个支持容错和内存缓存的分布式数据抽象。&lt;/li&gt;
+&lt;li&gt;用户可以通过 RDDs 高效地定义和管理数据流，而无需每次重新加载数据。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;高性能实现&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;Spark 能够通过缓存和任务优化，将迭代任务的性能提升 10 倍以上。&lt;/li&gt;
+&lt;li&gt;提供对大规模数据集的低延迟交互式查询支持。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;广泛适用性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;Spark 框架适用于多种场景，包括迭代机器学习算法、临时数据查询以及复杂的分布式计算任务。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;模型细节&#34;&gt;模型细节
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;工作流程&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;Spark 的核心是 RDDs，它们是分布在集群上的只读数据集，可以按需重建丢失的分区。&lt;/li&gt;
+&lt;li&gt;通过操作如 &lt;code&gt;map&lt;/code&gt;、&lt;code&gt;filter&lt;/code&gt; 和 &lt;code&gt;reduce&lt;/code&gt;，用户可以轻松定义并行数据流。&lt;/li&gt;
+&lt;li&gt;提供内存缓存机制，显著提高了重复操作的性能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;容错机制&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;通过记录 RDD 的 lineage 信息（数据派生关系），Spark 可以在节点失败时重建丢失的数据分区，而无需回滚到检查点。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;优化策略&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;数据本地化：优先在存储数据的节点上运行任务以减少网络传输。&lt;/li&gt;
+&lt;li&gt;闭包序列化：支持将用户定义的操作发送到集群节点执行。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;性能评估&#34;&gt;性能评估
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;实验设置&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;使用亚马逊 EC2 集群进行性能测试，数据集大小为 39GB，集群规模为 15 台机器。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;实验结果&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;在迭代任务中，Spark 比 Hadoop 快 10 倍，因为后者需要频繁从磁盘加载数据。&lt;/li&gt;
+&lt;li&gt;交互式查询的首次响应时间为 35 秒，但后续查询只需 0.5 至 1 秒，提供了与本地数据处理类似的体验。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;应用案例&#34;&gt;应用案例
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;迭代任务&lt;/strong&gt;：如逻辑回归等机器学习算法，通过 RDDs 缓存数据，显著减少了数据加载时间。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;交互式分析&lt;/strong&gt;：利用 Spark 解释器，可以快速查询大规模数据集，实现高效的交互式数据分析。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;主要优势&#34;&gt;主要优势
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;易用性&lt;/strong&gt;：对开发者友好，隐藏了分布式系统的复杂性。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;扩展性&lt;/strong&gt;：设计适配大规模集群，轻松处理数十 TB 数据。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;可靠性&lt;/strong&gt;：自动处理节点故障和任务延迟问题。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;效率&lt;/strong&gt;：数据本地化和任务缓存机制减少了网络和计算开销。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;局限性与未来工作&#34;&gt;局限性与未来工作
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;受限于模型的简单性，无法直接处理高度复杂的计算需求。&lt;/li&gt;
+&lt;li&gt;后续工作可能包括支持更多的计算模型（如迭代计算）以及提升资源利用率的优化。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;总结&#34;&gt;总结
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;Spark 通过限制编程模型简化了并行和分布式计算。&lt;/li&gt;
+&lt;li&gt;其实现高效可靠，适用于多种实际数据处理场景。&lt;/li&gt;
+&lt;li&gt;Spark 已成为大规模数据处理的重要工具，并对分布式计算的发展产生了深远影响。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>MapReduce</title>
         <link>https://deisbeir.github.io/p/mapreduce/</link>
         <pubDate>Sun, 12 Jan 2025 01:31:53 +0800</pubDate>
         
         <guid>https://deisbeir.github.io/p/mapreduce/</guid>
-        <description>&lt;img src="https://deisbeir.github.io/p/mapreduce/show.png" alt="Featured image of post Mapreduce" /&gt;&lt;h3 id=&#34;论文总结mapreduce-simplified-data-processing-on-large-clusters&#34;&gt;论文总结：MapReduce: Simplified Data Processing on Large Clusters
+        <description>&lt;img src="https://deisbeir.github.io/p/mapreduce/show.png" alt="Featured image of post MapReduce" /&gt;&lt;h3 id=&#34;论文总结mapreduce-simplified-data-processing-on-large-clusters&#34;&gt;论文总结：MapReduce: Simplified Data Processing on Large Clusters
 &lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://deisbeir.github.io/p/mapreduce/1.png&#34;
 	width=&#34;1806&#34;
 	height=&#34;880&#34;
