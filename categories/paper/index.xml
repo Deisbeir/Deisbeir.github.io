@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>论文 on 德斯别尔-Des</title>
+        <link>https://deisbeir.github.io/categories/paper/</link>
+        <description>Recent content in 论文 on 德斯别尔-Des</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>德斯别尔-Des</copyright>
+        <lastBuildDate>Mon, 13 Jan 2025 01:31:53 +0800</lastBuildDate><atom:link href="https://deisbeir.github.io/categories/paper/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Mapreduce</title>
+        <link>https://deisbeir.github.io/p/mapreduce/</link>
+        <pubDate>Mon, 13 Jan 2025 01:31:53 +0800</pubDate>
+        
+        <guid>https://deisbeir.github.io/p/mapreduce/</guid>
+        <description>&lt;img src="https://deisbeir.github.io/p/mapreduce/show.png" alt="Featured image of post Mapreduce" /&gt;&lt;h3 id=&#34;论文总结mapreduce-simplified-data-processing-on-large-clusters&#34;&gt;论文总结：MapReduce: Simplified Data Processing on Large Clusters
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://deisbeir.github.io/p/mapreduce/1.png&#34;
+	width=&#34;1806&#34;
+	height=&#34;880&#34;
+	srcset=&#34;https://deisbeir.github.io/p/mapreduce/1_hu9985853499969369981.png 480w, https://deisbeir.github.io/p/mapreduce/1_hu17482999402083861686.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250113015028959&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;205&#34;
+		data-flex-basis=&#34;492px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;背景与问题&#34;&gt;背景与问题
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;Google 在处理大规模数据（如网页抓取、日志分析等）时，需要分布式计算技术以高效完成任务。&lt;/li&gt;
+&lt;li&gt;传统分布式系统开发复杂，需要手动处理并行化、数据分布和故障恢复，导致代码繁琐且难以维护。&lt;/li&gt;
+&lt;li&gt;为解决这些问题，作者提出了 MapReduce 模型，一种简化并行计算的抽象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;主要贡献&#34;&gt;主要贡献
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;编程模型&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;MapReduce 基于两个核心操作：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;map&lt;/code&gt;: 负责从输入中生成中间键值对。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;reduce&lt;/code&gt;: 接收共享同一键的所有值，并生成最终结果。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;用户只需实现 &lt;code&gt;map&lt;/code&gt; 和 &lt;code&gt;reduce&lt;/code&gt; 函数，其余复杂操作由系统处理。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;高性能实现&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;采用廉价商品硬件（集群中的数千台 PC）。&lt;/li&gt;
+&lt;li&gt;提供自动化的任务分配、数据本地化和容错机制。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;广泛适用性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;模型简单，非分布式系统开发人员也能轻松上手。&lt;/li&gt;
+&lt;li&gt;适用于数据处理、机器学习、排序等多种任务。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;模型细节&#34;&gt;模型细节
+&lt;/h4&gt;&lt;img src=&#34;2.png&#34; alt=&#34;image-20250113014829473&#34; style=&#34;zoom:50%;&#34; /&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;工作流程&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;输入数据分为多个片段（split），每片大小通常为 16-64 MB。&lt;/li&gt;
+&lt;li&gt;MapReduce 调度系统负责将任务分配给集群中的计算节点。&lt;/li&gt;
+&lt;li&gt;‘Map’ 阶段生成中间键值对；‘Reduce’ 阶段整合这些对。&lt;/li&gt;
+&lt;li&gt;最终结果输出到多个文件中。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;容错机制&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;如果某个节点失败，未完成的任务会重新分配给其他节点。&lt;/li&gt;
+&lt;li&gt;已完成的 ‘map’ 任务需要重新执行，因为中间结果存储在本地磁盘上。&lt;/li&gt;
+&lt;li&gt;系统通过任务备份机制解决节点性能瓶颈问题。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;优化策略&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;数据本地化：尽量在存储数据的节点上执行任务以节省网络带宽。&lt;/li&gt;
+&lt;li&gt;任务分片（M 和 R 值）：将任务切分为小块以提高并行度和容错能力。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;性能评估&#34;&gt;性能评估
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;实验设置&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;集群规模：1800 台机器，每台配备双核 CPU、4GB 内存和千兆以太网。&lt;/li&gt;
+&lt;li&gt;测试任务：1TB 数据的模式匹配和排序。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;实验结果&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;模式匹配任务：
+&lt;ul&gt;
+&lt;li&gt;数据扫描速度峰值达 30 GB/s。&lt;/li&gt;
+&lt;li&gt;完成时间约为 150 秒，其中 1 分钟为启动开销。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;排序任务：
+&lt;ul&gt;
+&lt;li&gt;输入速率峰值 13 GB/s，受限于中间数据写入磁盘的开销。&lt;/li&gt;
+&lt;li&gt;备份机制启用后，执行时间缩短 44%。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;应用案例&#34;&gt;应用案例
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Google 内部使用&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;搜索引擎索引的构建。&lt;/li&gt;
+&lt;li&gt;数据挖掘与统计分析（如 Google Zeitgeist 和 Google Trends）。&lt;/li&gt;
+&lt;li&gt;大规模机器学习和图处理任务。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;规模增长&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;从 2003 年到 2006 年，MapReduce 的应用从数百扩展到数千个程序，每天处理超过 20PB 数据。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;主要优势&#34;&gt;主要优势
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;易用性&lt;/strong&gt;：对开发者友好，隐藏了分布式系统的复杂性。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;扩展性&lt;/strong&gt;：设计适配大规模集群，轻松处理数十 PB 数据。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;可靠性&lt;/strong&gt;：自动处理节点故障和任务延迟问题。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;效率&lt;/strong&gt;：数据本地化和任务备份机制减少了网络和计算开销。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;局限性与未来工作&#34;&gt;局限性与未来工作
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;受限于模型的简单性，无法直接处理高度复杂的计算需求。&lt;/li&gt;
+&lt;li&gt;后续工作可能包括支持更多的计算模型（如迭代计算）以及提升资源利用率的优化。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;总结&#34;&gt;总结
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;MapReduce 通过限制编程模型简化了并行和分布式计算。&lt;/li&gt;
+&lt;li&gt;其实现高效可靠，适用于多种实际数据处理场景。&lt;/li&gt;
+&lt;li&gt;MapReduce 已成为 Google 内部大规模数据处理的核心工具，并对分布式计算的发展产生了深远影响。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="论文总结：MapReduce: Simplified Data Processing on Large Clusters 背景与问题 Google 在处理大规模数据（如网页抓取、日志分析等）时，需要分布式计算技术以高效完成任务。 传统分布式系统开发复杂，需要手动处理并行化、数据分布和故障恢复，导致代码繁琐且难以维护。 为解决这些问题，作者提出了 MapReduce 模型，一种简化并行计算的抽象。 主要贡献 编程模型： MapReduce 基于两个核心操作： map: 负责从输入中生成中间键值对。 reduce: 接收共享同一键的所有值，并生成最终结果。 用户只需实现 map 和 reduce 函数，其余复杂操作由系统处理。 高性能实现： 采用廉价商品硬件（集群中的数千台 PC）。 提供自动化的任务分配、数据本地化和容错机制。 广泛适用性： 模型简单，非分布式系统开发人员也能轻松上手。 适用于数据处理、机器学习、排序等多种任务。 模型细节 工作流程： 输入数据分为多个片段（split），每片大小通常为 16-64 MB。 MapReduce 调度系统负责将任务分配给集群中的计算节点。 ‘Map’ 阶段生成中间键值对；‘Reduce’ 阶段整合这些对。 最终结果输出到多个文件中。 容错机制： 如果某个节点失败，未完成的任务会重新分配给其他节点。 已完成的 ‘map’ 任务需要重新执行，因为中间结果存储在本地磁盘上。 系统通过任务备份机制解决节点性能瓶颈问题。 优化策略： 数据本地化：尽量在存储数据的节点上执行任务以节省网络带宽。 任务分片（M 和 R 值）：将任务切分为小块以提高并行度和容错能力。 性能评估 实验设置： 集群规模：1800 台机器，每台配备双核 CPU、4GB 内存和千兆以太网。 测试任务：1TB 数据的模式匹配和排序。 实验结果： 模式匹配任务： 数据扫描速度峰值达 30 GB/s。 完成时间约为 150 秒，其中 1 分钟为启动开销。 排序任务： 输入速率峰值 13 GB/s，受限于中间数据写入磁盘的开销。 备份机制启用后，执行时间缩短 44%。 应用案例 Google 内部使用： 搜索引擎索引的构建。 数据挖掘与统计分析（如 Google Zeitgeist 和 Google Trends）。 大规模机器学习和图处理任务。 规模增长： 从 2003 年到 2006 年，MapReduce 的应用从数百扩展到数千个程序，每天处理超过 20PB 数据。 主要优势 易用性：对开发者友好，隐藏了分布式系统的复杂性。 扩展性：设计适配大规模集群，轻松处理数十 PB 数据。 可靠性：自动处理节点故障和任务延迟问题。 效率：数据本地化和任务备份机制减少了网络和计算开销。 局限性与未来工作 受限于模型的简单性，无法直接处理高度复杂的计算需求。 后续工作可能包括支持更多的计算模型（如迭代计算）以及提升资源利用率的优化。 总结 MapReduce 通过限制编程模型简化了并行和分布式计算。 其实现高效可靠，适用于多种实际数据处理场景。 MapReduce 已成为 Google 内部大规模数据处理的核心工具，并对分布式计算的发展产生了深远影响。 ">
+<title>Mapreduce</title>
+
+<link rel='canonical' href='https://deisbeir.github.io/p/mapreduce/'>
+
+<link rel="stylesheet" href="/scss/style.min.9cf3bf6160e8c1c4f6182717316b748161ecbc5e5b0a18d3e1e16f511497644a.css"><meta property='og:title' content="Mapreduce">
+<meta property='og:description' content="论文总结：MapReduce: Simplified Data Processing on Large Clusters 背景与问题 Google 在处理大规模数据（如网页抓取、日志分析等）时，需要分布式计算技术以高效完成任务。 传统分布式系统开发复杂，需要手动处理并行化、数据分布和故障恢复，导致代码繁琐且难以维护。 为解决这些问题，作者提出了 MapReduce 模型，一种简化并行计算的抽象。 主要贡献 编程模型： MapReduce 基于两个核心操作： map: 负责从输入中生成中间键值对。 reduce: 接收共享同一键的所有值，并生成最终结果。 用户只需实现 map 和 reduce 函数，其余复杂操作由系统处理。 高性能实现： 采用廉价商品硬件（集群中的数千台 PC）。 提供自动化的任务分配、数据本地化和容错机制。 广泛适用性： 模型简单，非分布式系统开发人员也能轻松上手。 适用于数据处理、机器学习、排序等多种任务。 模型细节 工作流程： 输入数据分为多个片段（split），每片大小通常为 16-64 MB。 MapReduce 调度系统负责将任务分配给集群中的计算节点。 ‘Map’ 阶段生成中间键值对；‘Reduce’ 阶段整合这些对。 最终结果输出到多个文件中。 容错机制： 如果某个节点失败，未完成的任务会重新分配给其他节点。 已完成的 ‘map’ 任务需要重新执行，因为中间结果存储在本地磁盘上。 系统通过任务备份机制解决节点性能瓶颈问题。 优化策略： 数据本地化：尽量在存储数据的节点上执行任务以节省网络带宽。 任务分片（M 和 R 值）：将任务切分为小块以提高并行度和容错能力。 性能评估 实验设置： 集群规模：1800 台机器，每台配备双核 CPU、4GB 内存和千兆以太网。 测试任务：1TB 数据的模式匹配和排序。 实验结果： 模式匹配任务： 数据扫描速度峰值达 30 GB/s。 完成时间约为 150 秒，其中 1 分钟为启动开销。 排序任务： 输入速率峰值 13 GB/s，受限于中间数据写入磁盘的开销。 备份机制启用后，执行时间缩短 44%。 应用案例 Google 内部使用： 搜索引擎索引的构建。 数据挖掘与统计分析（如 Google Zeitgeist 和 Google Trends）。 大规模机器学习和图处理任务。 规模增长： 从 2003 年到 2006 年，MapReduce 的应用从数百扩展到数千个程序，每天处理超过 20PB 数据。 主要优势 易用性：对开发者友好，隐藏了分布式系统的复杂性。 扩展性：设计适配大规模集群，轻松处理数十 PB 数据。 可靠性：自动处理节点故障和任务延迟问题。 效率：数据本地化和任务备份机制减少了网络和计算开销。 局限性与未来工作 受限于模型的简单性，无法直接处理高度复杂的计算需求。 后续工作可能包括支持更多的计算模型（如迭代计算）以及提升资源利用率的优化。 总结 MapReduce 通过限制编程模型简化了并行和分布式计算。 其实现高效可靠，适用于多种实际数据处理场景。 MapReduce 已成为 Google 内部大规模数据处理的核心工具，并对分布式计算的发展产生了深远影响。 ">
+<meta property='og:url' content='https://deisbeir.github.io/p/mapreduce/'>
+<meta property='og:site_name' content='德斯别尔-Des'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='论文' /><meta property='article:published_time' content='2025-01-13T01:31:53&#43;08:00'/><meta property='article:modified_time' content='2025-01-13T01:31:53&#43;08:00'/><meta property='og:image' content='https://deisbeir.github.io/p/mapreduce/show.png' />
+<meta name="twitter:title" content="Mapreduce">
+<meta name="twitter:description" content="论文总结：MapReduce: Simplified Data Processing on Large Clusters 背景与问题 Google 在处理大规模数据（如网页抓取、日志分析等）时，需要分布式计算技术以高效完成任务。 传统分布式系统开发复杂，需要手动处理并行化、数据分布和故障恢复，导致代码繁琐且难以维护。 为解决这些问题，作者提出了 MapReduce 模型，一种简化并行计算的抽象。 主要贡献 编程模型： MapReduce 基于两个核心操作： map: 负责从输入中生成中间键值对。 reduce: 接收共享同一键的所有值，并生成最终结果。 用户只需实现 map 和 reduce 函数，其余复杂操作由系统处理。 高性能实现： 采用廉价商品硬件（集群中的数千台 PC）。 提供自动化的任务分配、数据本地化和容错机制。 广泛适用性： 模型简单，非分布式系统开发人员也能轻松上手。 适用于数据处理、机器学习、排序等多种任务。 模型细节 工作流程： 输入数据分为多个片段（split），每片大小通常为 16-64 MB。 MapReduce 调度系统负责将任务分配给集群中的计算节点。 ‘Map’ 阶段生成中间键值对；‘Reduce’ 阶段整合这些对。 最终结果输出到多个文件中。 容错机制： 如果某个节点失败，未完成的任务会重新分配给其他节点。 已完成的 ‘map’ 任务需要重新执行，因为中间结果存储在本地磁盘上。 系统通过任务备份机制解决节点性能瓶颈问题。 优化策略： 数据本地化：尽量在存储数据的节点上执行任务以节省网络带宽。 任务分片（M 和 R 值）：将任务切分为小块以提高并行度和容错能力。 性能评估 实验设置： 集群规模：1800 台机器，每台配备双核 CPU、4GB 内存和千兆以太网。 测试任务：1TB 数据的模式匹配和排序。 实验结果： 模式匹配任务： 数据扫描速度峰值达 30 GB/s。 完成时间约为 150 秒，其中 1 分钟为启动开销。 排序任务： 输入速率峰值 13 GB/s，受限于中间数据写入磁盘的开销。 备份机制启用后，执行时间缩短 44%。 应用案例 Google 内部使用： 搜索引擎索引的构建。 数据挖掘与统计分析（如 Google Zeitgeist 和 Google Trends）。 大规模机器学习和图处理任务。 规模增长： 从 2003 年到 2006 年，MapReduce 的应用从数百扩展到数千个程序，每天处理超过 20PB 数据。 主要优势 易用性：对开发者友好，隐藏了分布式系统的复杂性。 扩展性：设计适配大规模集群，轻松处理数十 PB 数据。 可靠性：自动处理节点故障和任务延迟问题。 效率：数据本地化和任务备份机制减少了网络和计算开销。 局限性与未来工作 受限于模型的简单性，无法直接处理高度复杂的计算需求。 后续工作可能包括支持更多的计算模型（如迭代计算）以及提升资源利用率的优化。 总结 MapReduce 通过限制编程模型简化了并行和分布式计算。 其实现高效可靠，适用于多种实际数据处理场景。 MapReduce 已成为 Google 内部大规模数据处理的核心工具，并对分布式计算的发展产生了深远影响。 "><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://deisbeir.github.io/p/mapreduce/show.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu6982455444599574825.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">德斯别尔-Des</a></h1>
+            <h2 class="site-description">desber@mail.ustc.edu.cn</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/Deisbeir'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"> <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z"></path> <path d="M6.343 17.657l-1.414 1.414"></path> <path d="M6.343 6.343l-1.414 -1.414"></path> <path d="M17.657 6.343l1.414 -1.414"></path> <path d="M17.657 17.657l1.414 1.414"></path> <path d="M4 12h-2"></path> <path d="M12 4v-2"></path> <path d="M20 12h2"></path> <path d="M12 20v2"></path> </svg> 
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"> <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path> <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2"></path> <path d="M19 11h2m-1 -1v2"></path> </svg> 
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#论文总结mapreduce-simplified-data-processing-on-large-clusters">论文总结：MapReduce: Simplified Data Processing on Large Clusters</a>
+          <ol>
+            <li><a href="#背景与问题">背景与问题</a></li>
+            <li><a href="#主要贡献">主要贡献</a></li>
+            <li><a href="#模型细节">模型细节</a></li>
+            <li><a href="#性能评估">性能评估</a></li>
+            <li><a href="#应用案例">应用案例</a></li>
+            <li><a href="#主要优势">主要优势</a></li>
+            <li><a href="#局限性与未来工作">局限性与未来工作</a></li>
+            <li><a href="#总结">总结</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/mapreduce/">
+                <img src="/p/mapreduce/show_hu7206378545725963009.png"
+                        srcset="/p/mapreduce/show_hu7206378545725963009.png 800w, /p/mapreduce/show_hu1644095591755965256.png 1600w"
+                        width="800" 
+                        height="227" 
+                        loading="lazy"
+                        alt="Featured image of post Mapreduce" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/paper/" style="background-color: #2a9d8f; color: #fff;">
+                论文
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/mapreduce/">Mapreduce</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jan 13, 2025</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h3 id="论文总结mapreduce-simplified-data-processing-on-large-clusters">论文总结：MapReduce: Simplified Data Processing on Large Clusters
+</h3><p><img src="/p/mapreduce/1.png"
+	width="1806"
+	height="880"
+	srcset="/p/mapreduce/1_hu9985853499969369981.png 480w, /p/mapreduce/1_hu17482999402083861686.png 1024w"
+	loading="lazy"
+	
+		alt="image-20250113015028959"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="205"
+		data-flex-basis="492px"
+	
+></p>
+<h4 id="背景与问题">背景与问题
+</h4><ul>
+<li>Google 在处理大规模数据（如网页抓取、日志分析等）时，需要分布式计算技术以高效完成任务。</li>
+<li>传统分布式系统开发复杂，需要手动处理并行化、数据分布和故障恢复，导致代码繁琐且难以维护。</li>
+<li>为解决这些问题，作者提出了 MapReduce 模型，一种简化并行计算的抽象。</li>
+</ul>
+<h4 id="主要贡献">主要贡献
+</h4><ol>
+<li><strong>编程模型</strong>：
+<ul>
+<li>MapReduce 基于两个核心操作：
+<ul>
+<li><code>map</code>: 负责从输入中生成中间键值对。</li>
+<li><code>reduce</code>: 接收共享同一键的所有值，并生成最终结果。</li>
+</ul>
+</li>
+<li>用户只需实现 <code>map</code> 和 <code>reduce</code> 函数，其余复杂操作由系统处理。</li>
+</ul>
+</li>
+<li><strong>高性能实现</strong>：
+<ul>
+<li>采用廉价商品硬件（集群中的数千台 PC）。</li>
+<li>提供自动化的任务分配、数据本地化和容错机制。</li>
+</ul>
+</li>
+<li><strong>广泛适用性</strong>：
+<ul>
+<li>模型简单，非分布式系统开发人员也能轻松上手。</li>
+<li>适用于数据处理、机器学习、排序等多种任务。</li>
+</ul>
+</li>
+</ol>
+<h4 id="模型细节">模型细节
+</h4><img src="2.png" alt="image-20250113014829473" style="zoom:50%;" />
+<ol>
+<li><strong>工作流程</strong>：
+<ul>
+<li>输入数据分为多个片段（split），每片大小通常为 16-64 MB。</li>
+<li>MapReduce 调度系统负责将任务分配给集群中的计算节点。</li>
+<li>‘Map’ 阶段生成中间键值对；‘Reduce’ 阶段整合这些对。</li>
+<li>最终结果输出到多个文件中。</li>
+</ul>
+</li>
+<li><strong>容错机制</strong>：
+<ul>
+<li>如果某个节点失败，未完成的任务会重新分配给其他节点。</li>
+<li>已完成的 ‘map’ 任务需要重新执行，因为中间结果存储在本地磁盘上。</li>
+<li>系统通过任务备份机制解决节点性能瓶颈问题。</li>
+</ul>
+</li>
+<li><strong>优化策略</strong>：
+<ul>
+<li>数据本地化：尽量在存储数据的节点上执行任务以节省网络带宽。</li>
+<li>任务分片（M 和 R 值）：将任务切分为小块以提高并行度和容错能力。</li>
+</ul>
+</li>
+</ol>
+<h4 id="性能评估">性能评估
+</h4><ol>
+<li><strong>实验设置</strong>：
+<ul>
+<li>集群规模：1800 台机器，每台配备双核 CPU、4GB 内存和千兆以太网。</li>
+<li>测试任务：1TB 数据的模式匹配和排序。</li>
+</ul>
+</li>
+<li><strong>实验结果</strong>：
+<ul>
+<li>模式匹配任务：
+<ul>
+<li>数据扫描速度峰值达 30 GB/s。</li>
+<li>完成时间约为 150 秒，其中 1 分钟为启动开销。</li>
+</ul>
+</li>
+<li>排序任务：
+<ul>
+<li>输入速率峰值 13 GB/s，受限于中间数据写入磁盘的开销。</li>
+<li>备份机制启用后，执行时间缩短 44%。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="应用案例">应用案例
+</h4><ol>
+<li><strong>Google 内部使用</strong>：
+<ul>
+<li>搜索引擎索引的构建。</li>
+<li>数据挖掘与统计分析（如 Google Zeitgeist 和 Google Trends）。</li>
+<li>大规模机器学习和图处理任务。</li>
+</ul>
+</li>
+<li><strong>规模增长</strong>：
+<ul>
+<li>从 2003 年到 2006 年，MapReduce 的应用从数百扩展到数千个程序，每天处理超过 20PB 数据。</li>
+</ul>
+</li>
+</ol>
+<h4 id="主要优势">主要优势
+</h4><ol>
+<li><strong>易用性</strong>：对开发者友好，隐藏了分布式系统的复杂性。</li>
+<li><strong>扩展性</strong>：设计适配大规模集群，轻松处理数十 PB 数据。</li>
+<li><strong>可靠性</strong>：自动处理节点故障和任务延迟问题。</li>
+<li><strong>效率</strong>：数据本地化和任务备份机制减少了网络和计算开销。</li>
+</ol>
+<h4 id="局限性与未来工作">局限性与未来工作
+</h4><ul>
+<li>受限于模型的简单性，无法直接处理高度复杂的计算需求。</li>
+<li>后续工作可能包括支持更多的计算模型（如迭代计算）以及提升资源利用率的优化。</li>
+</ul>
+<h4 id="总结">总结
+</h4><ul>
+<li>MapReduce 通过限制编程模型简化了并行和分布式计算。</li>
+<li>其实现高效可靠，适用于多种实际数据处理场景。</li>
+<li>MapReduce 已成为 Google 内部大规模数据处理的核心工具，并对分布式计算的发展产生了深远影响。</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E8%AE%BA%E6%96%87/">论文</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="Deisbeir/Deisbeir.github.io"
+    data-repo-id="R_kgDONblikQ"
+    data-category="Announcements"
+    data-category-id="DIC_kwDONblikc4Clkwh"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="true"
+    data-emit-metadata="false"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="zh-CN"
+    data-loading=""
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark_dimmed');
+            }
+        }
+    })();
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2025 德斯别尔-Des
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.29.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script><script type="text/javascript" src="/ts/custom.fc6cbcb80d4ac1de73428c1385cade7a34ee0213e9a780ef249ecf8cf7f37b0b.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<script src="https://npm.elemecdn.com/nprogress@0.2.0/nprogress.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://npm.elemecdn.com/nprogress@0.2.0/nprogress.css" crossorigin="anonymous" />
+<script>
+    NProgress.start();
+    document.addEventListener("readystatechange", () => {
+        if (document.readyState === "interactive") NProgress.inc(0.8);
+        if (document.readyState === "complete") NProgress.done();
+    });
+</script>
+
+    </body>
+</html>
