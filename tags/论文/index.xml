@@ -14,12 +14,16 @@
         
         <guid>https://deisbeir.github.io/p/itemcf/</guid>
         <description>&lt;img src="https://deisbeir.github.io/p/itemcf/show.png" alt="Featured image of post ItemCF" /&gt;&lt;h3 id=&#34;论文总结item-based-collaborative-filtering-recommendation-algorithms&#34;&gt;论文总结：&lt;em&gt;Item-Based Collaborative Filtering Recommendation Algorithms&lt;/em&gt;
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;D:%5cGO%5cblog%5chugo_extended_0.131.0_windows-amd64%5cdev%5ccontent%5cpost%5cItemCF%5c1.png&#34;
-	
-	
-	
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://deisbeir.github.io/p/itemcf/1.png&#34;
+	width=&#34;988&#34;
+	height=&#34;280&#34;
+	srcset=&#34;https://deisbeir.github.io/p/itemcf/1_hu1346023622882188747.png 480w, https://deisbeir.github.io/p/itemcf/1_hu17807581507284861765.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;352&#34;
+		data-flex-basis=&#34;846px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;ABSTRACT&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
