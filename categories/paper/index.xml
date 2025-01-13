@@ -7,7 +7,176 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>德斯别尔-Des</copyright>
-        <lastBuildDate>Mon, 13 Jan 2025 02:11:08 +0800</lastBuildDate><atom:link href="https://deisbeir.github.io/categories/paper/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 13 Jan 2025 17:45:37 +0800</lastBuildDate><atom:link href="https://deisbeir.github.io/categories/paper/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>ItemCF</title>
+        <link>https://deisbeir.github.io/p/itemcf/</link>
+        <pubDate>Mon, 13 Jan 2025 17:45:37 +0800</pubDate>
+        
+        <guid>https://deisbeir.github.io/p/itemcf/</guid>
+        <description>&lt;img src="https://deisbeir.github.io/p/itemcf/show.png" alt="Featured image of post ItemCF" /&gt;&lt;h3 id=&#34;论文总结item-based-collaborative-filtering-recommendation-algorithms&#34;&gt;论文总结：&lt;em&gt;Item-Based Collaborative Filtering Recommendation Algorithms&lt;/em&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;D:%5cGO%5cblog%5chugo_extended_0.131.0_windows-amd64%5cdev%5ccontent%5cpost%5cItemCF%5c1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;ABSTRACT&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;​			Recommender systems apply knowledge discovery techniques to the problem of making personalized recommendations for information, products or services during a live interaction. These systems, especially the k-nearest neighbor collaborative ltering based ones, are achieving widespread success on the Web. The tremendous growth in the amount of available information and the number of visitors to Web sites in recent years poses some key challenges for recommender systems. These are: producing high quality recommendations, performing many recommendations per second for millions of users and items and achieving high coverage in the face of data sparsity. In traditional collaborative ltering systems the amount of work increases with the number of participants in the system. New recommender system technologies are needed that can quickly produce high quality recom- mendations, even for very large-scale problems. To address these issues we have explored item-based collaborative ltering techniques. Item-based techniques rst analyze the user-item matrix to identify relationships between dierent items, and then use these relationships to indirectly compute recommendations for users.&lt;/p&gt;
+&lt;p&gt;​			In this paper we analyze dierent item-based recommendation generation algorithms. We look into dierent techniques for computing item-item similarities (e.g., item-item correlation vs. cosine similarities between item vectors) and dierent techniques for obtaining recommendations from them (e.g., weighted sum vs. regression model). Finally, we ex- perimentally evaluate our results and compare them to the basic k-nearest neighbor approach. Our experiments suggest that item-based algorithms provide dramatically better performance than user-based algorithms, while at the same time providing better quality than the best available userbased algorithms.&lt;/p&gt;
+&lt;h3 id=&#34;背景&#34;&gt;背景
+&lt;/h3&gt;&lt;p&gt;随着信息量的爆炸式增长，用户在选择商品或服务时面临的信息过载问题变得越来越突出。推荐系统是解决这一问题的关键技术，它通过分析用户行为和数据，提供个性化的推荐。目前，基于协同过滤（Collaborative Filtering, CF）的推荐技术是最成功的应用之一，广泛应用于信息过滤和电子商务场景中。&lt;/p&gt;
+&lt;p&gt;然而，传统的基于用户的协同过滤方法面临两大挑战：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;可扩展性&lt;/strong&gt;：随着用户和项目数量的增加，计算开销显著上升，尤其是在处理大量数据时会导致实时推荐变得不可行。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;推荐质量&lt;/strong&gt;：数据稀疏性（即用户对大多数项目没有评分）导致推荐的准确性下降。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;为了解决这些问题，本文提出了基于项目的协同过滤算法。与传统方法相比，基于项目的算法通过分析项目间的相似性来生成推荐，而不是直接寻找相似用户。&lt;/p&gt;
+&lt;p&gt;本文探讨了一种新颖的基于项目的协同过滤（Item-Based Collaborative Filtering, IBCF）推荐算法，用于解决传统用户为中心的协同过滤算法在大规模数据集中的性能和推荐质量问题。主要贡献包括：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;算法分析&lt;/strong&gt;：对项目相似性计算（如余弦相似度、调整余弦相似度和相关性）和推荐生成方法（加权和与回归模型）的深入研究。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;预计算模型&lt;/strong&gt;：提出一种预计算项目相似度的方法，通过静态项目数据提高算法的在线可扩展性。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;实验评估&lt;/strong&gt;：对算法的推荐质量与性能进行了实验比较，结果表明基于项目的算法在推荐精度和效率方面显著优于基于用户的算法。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;主要发现&#34;&gt;主要发现
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;调整余弦相似度在生成高质量推荐方面效果最佳。&lt;/li&gt;
+&lt;li&gt;与用户为中心的算法相比，基于项目的算法在数据稀疏性和大规模处理时具有更高的预测精度（较低的平均绝对误差，MAE）。&lt;/li&gt;
+&lt;li&gt;通过模型预计算，只需存储少量的相似项目即可生成高质量的推荐，显著提高了系统的响应速度和吞吐量。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;结论&#34;&gt;结论
+&lt;/h4&gt;&lt;p&gt;基于项目的协同过滤算法为大规模电子商务中的推荐系统提供了高效且高质量的解决方案，能够在大规模数据集上实现良好的性能表现。这种方法解决了传统用户为中心方法在稀疏性和可扩展性上的瓶颈。&lt;/p&gt;
+&lt;h3 id=&#34;原理&#34;&gt;原理
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;基于项目的协同过滤算法&lt;/strong&gt;的核心思想是通过计算项目间的相似性来预测用户对某一项目的偏好。以下是其基本工作流程：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://deisbeir.github.io/p/itemcf/2.png&#34;
+	width=&#34;1045&#34;
+	height=&#34;361&#34;
+	srcset=&#34;https://deisbeir.github.io/p/itemcf/2_hu8136991726507575375.png 480w, https://deisbeir.github.io/p/itemcf/2_hu689072321997275323.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250113180530094&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;289&#34;
+		data-flex-basis=&#34;694px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;用户-项目评分矩阵&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;输入为一个矩阵，其中每一行代表一个用户，每一列代表一个项目，矩阵中的值表示用户对项目的评分。&lt;/li&gt;
+&lt;li&gt;例如，用户 A 对电影 1 的评分为 5 分，而对电影 2 尚未评分（值为 0）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;项目相似性计算&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;余弦相似度&lt;/strong&gt;：将项目看作向量，计算它们之间夹角的余弦值：&lt;/p&gt;
+&lt;img src=&#34;5.png&#34; alt=&#34;image-20250113181156430&#34; style=&#34;zoom: 67%;&#34; /&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;相关性相似度&lt;/strong&gt;：使用皮尔逊相关系数，通过去除用户评分的平均值来计算相似性：&lt;/p&gt;
+&lt;img src=&#34;6.png&#34; alt=&#34;image-20250113181311252&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;调整余弦相似度&lt;/strong&gt;：修正余弦相似度，考虑用户评分偏差：&lt;/p&gt;
+&lt;img src=&#34;7.png&#34; alt=&#34;image-20250113181354120&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img src=&#34;3.png&#34; alt=&#34;image-20250113180749897&#34;  /&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;评分预测&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;加权和&lt;/strong&gt;：对目标项目的评分预测，利用目标用户对相似项目的评分加权求和：&lt;/p&gt;
+&lt;img src=&#34;8.png&#34; alt=&#34;image-20250113181455124&#34; style=&#34;zoom: 80%;&#34; /&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;回归模型&lt;/strong&gt;：利用回归方法对评分进行调整，避免直接使用评分可能产生的误差。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://deisbeir.github.io/p/itemcf/4.png&#34;
+	width=&#34;1173&#34;
+	height=&#34;419&#34;
+	srcset=&#34;https://deisbeir.github.io/p/itemcf/4_hu1753262329743907650.png 480w, https://deisbeir.github.io/p/itemcf/4_hu8124815917033415161.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250113180912486&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;279&#34;
+		data-flex-basis=&#34;671px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;模型预计算&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;对所有项目计算相似性矩阵，只存储每个项目的最相似的几个项目，用于实时推荐。&lt;/li&gt;
+&lt;li&gt;通过减少计算范围（即限制 ），显著降低了计算复杂度和存储需求。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;实验方法&#34;&gt;实验方法
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;数据集&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;使用来自 &lt;strong&gt;MovieLens&lt;/strong&gt; 推荐系统的数据集，包含 943 名用户和 1682 部电影，总计约 10 万条评分数据。&lt;/li&gt;
+&lt;li&gt;数据被分为训练集和测试集，不同比例（如 80:20）的分割用于实验分析。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;评价指标&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;平均绝对误差（Mean Absolute Error, MAE）&lt;/strong&gt;：衡量预测评分与实际评分之间的平均差异：&lt;/li&gt;
+&lt;li&gt;MAE 越低，表示预测精度越高。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;实验设置&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;对比不同相似性算法（如余弦、调整余弦、相关性）对推荐质量的影响。&lt;/li&gt;
+&lt;li&gt;分析训练集比例、邻居数量（ 值）和模型规模对性能和质量的影响。&lt;/li&gt;
+&lt;li&gt;与传统用户为中心的  近邻算法进行比较。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;实验结果&#34;&gt;实验结果
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;相似性算法对推荐质量的影响&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;调整余弦相似度的 MAE 最低，优于普通余弦和相关性相似度。&lt;/li&gt;
+&lt;li&gt;在所有实验中，调整余弦相似度都被选为推荐算法的默认配置。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;训练集比例和邻居数量的敏感性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;随着训练集比例从 20% 增加到 80%，预测质量逐渐提升（MAE 逐渐降低），但收益逐渐减少。&lt;/li&gt;
+&lt;li&gt;基于项目的加权和算法在邻居数量  为 30 时达到最佳性能，进一步增加邻居数量提升有限。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;与用户为中心的推荐算法比较&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;基于项目的算法在所有数据稀疏性情况下都优于基于用户的  近邻算法，尤其是在稀疏数据集上表现显著。&lt;/li&gt;
+&lt;li&gt;回归模型在极稀疏数据下表现良好，但在高密度数据中可能过拟合，表现反而下降。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;模型预计算的性能表现&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;通过限制模型规模，仅存储最相似的 25-50 个项目，可以实现约 96-98% 的预测精度，显著减少存储和计算时间。&lt;/li&gt;
+&lt;li&gt;在处理效率上，基于模型的算法比直接计算的项目-项目方法快 10 倍以上。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;总结&#34;&gt;总结
+&lt;/h3&gt;&lt;p&gt;实验表明，基于项目的协同过滤算法不仅在推荐质量上优于传统方法，还在大规模数据集上表现出色。通过预计算技术，算法在计算效率和存储需求之间实现了良好的平衡，是一种适用于电子商务环境的大规模推荐系统解决方案。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Spark</title>
         <link>https://deisbeir.github.io/p/spark/</link>
         <pubDate>Mon, 13 Jan 2025 02:11:08 +0800</pubDate>
