@@ -7,7 +7,113 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>德斯别尔-Des</copyright>
-        <lastBuildDate>Mon, 13 Jan 2025 17:45:37 +0800</lastBuildDate><atom:link href="https://deisbeir.github.io/categories/paper/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 14 Jan 2025 11:49:34 +0800</lastBuildDate><atom:link href="https://deisbeir.github.io/categories/paper/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Matrix_Factorization</title>
+        <link>https://deisbeir.github.io/p/matrix_factorization/</link>
+        <pubDate>Tue, 14 Jan 2025 11:49:34 +0800</pubDate>
+        
+        <guid>https://deisbeir.github.io/p/matrix_factorization/</guid>
+        <description>&lt;img src="https://deisbeir.github.io/p/matrix_factorization/show.png" alt="Featured image of post Matrix_Factorization" /&gt;&lt;h3 id=&#34;论文总结matrix-factorization-techniques-for-recommender-systems&#34;&gt;论文总结：&lt;strong&gt;Matrix Factorization Techniques for Recommender Systems&lt;/strong&gt;
+&lt;/h3&gt;&lt;img src=&#34;1.png&#34; alt=&#34;image-20250114122454762&#34; style=&#34;zoom:50%;&#34; /&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;ABSTRACT&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;​		As the Netflix Prize competition has demonstrated, matrix factorization models are superior to classic nearest neighbor techniques for producing product recommendations, allowing the incorporation of additional information such as implicit feedback, temporal effects, and confidence levels.&lt;/p&gt;
+&lt;p&gt;​		本论文深入探讨了 Netflix 推荐系统中使用的矩阵分解技术及其在协同过滤领域的优越性。通过将用户和项目映射到隐变量空间，该技术能够捕捉用户与项目间的复杂交互。论文强调了矩阵分解模型在整合时间动态、隐式反馈和偏差建模等方面的灵活性，并通过 Netflix Prize 数据集验证了其对推荐质量的显著提升。&lt;/p&gt;
+&lt;h3 id=&#34;背景&#34;&gt;背景
+&lt;/h3&gt;&lt;p&gt;随着电子商务和内容平台的发展，推荐系统在为用户提供个性化服务方面发挥了重要作用。Netflix 推荐系统基于协同过滤，旨在分析用户对电影的评分模式，以预测未来的观看偏好。&lt;/p&gt;
+&lt;p&gt;推荐系统主要分为两类：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;基于内容过滤&lt;/strong&gt;：通过分析用户和项目的属性特征匹配用户与项目。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;协同过滤&lt;/strong&gt;：利用用户行为（如评分或购买记录）预测用户兴趣。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Netflix 系统采用协同过滤方法，其中矩阵分解模型通过隐变量空间的表示，解决了传统最近邻方法的可扩展性和精度不足问题。&lt;/p&gt;
+&lt;h3 id=&#34;主要发现&#34;&gt;主要发现
+&lt;/h3&gt;&lt;h4 id=&#34;1-矩阵分解技术的优越性&#34;&gt;1. 矩阵分解技术的优越性
+&lt;/h4&gt;&lt;p&gt;矩阵分解模型是协同过滤中最成功的方法之一，其核心思想是将用户和项目嵌入到同一个隐变量空间，通过内积建模用户与项目的交互。具体特性包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;高效建模用户和项目&lt;/strong&gt;：&lt;/p&gt;
+$$
+  \hat{r}_{ui} = \mu + b_u + b_i + q_i^T p_u
+  $$&lt;ul&gt;
+&lt;li&gt;$ \mu $ ：全局平均评分。&lt;/li&gt;
+&lt;li&gt;$b_u$ ，$ b_i $：用户和项目的评分偏差。&lt;/li&gt;
+&lt;li&gt;$q_i$，$p_u$：项目和用户的隐变量向量，捕捉用户偏好与项目特性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;灵活性&lt;/strong&gt;： 模型能够自然整合时间动态、隐式反馈和偏差等多种数据特性。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;高效性与准确性&lt;/strong&gt;： 实验表明矩阵分解模型显著优于基于用户或项目的最近邻算法，能够以较低计算成本提供更高的预测精度。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;2-时间动态的影响&#34;&gt;2. 时间动态的影响
+&lt;/h4&gt;&lt;p&gt;用户偏好和项目流行度随时间变化，矩阵分解模型通过动态调整用户和项目的特性向量来捕捉这些变化：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;用户评分基线随时间漂移（如评分标准变宽或变严）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;项目流行度因外部事件（如电影奖项、演员活动）而变化。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+$$
+  \hat{r}_{ui}(t) = \mu + b_i(t) + b_u(t) + q_i^T p_u(t)
+  $$&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;时间动态的加入显著降低了预测误差，尤其是在用户行为变化频繁的场景中。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;3-隐式反馈的整合&#34;&gt;3. 隐式反馈的整合
+&lt;/h4&gt;&lt;p&gt;Netflix 推荐系统能够利用隐式反馈（如观看时长、点击行为）弥补评分数据稀疏的问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;隐式反馈以用户行为的存在或频率作为信号（如某用户购买或观看某项目的次数）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+$$
+  \hat{r}_{ui} = \mu + b_u + b_i + q_i^T \left(p_u + |N(u)|^{-0.5} \sum_{i \in N(u)} x_i\right)
+  $$&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;实验显示，隐式反馈的加入能够提升冷启动用户和项目的推荐效果。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;4-偏差建模的贡献&#34;&gt;4. 偏差建模的贡献
+&lt;/h4&gt;&lt;p&gt;评分数据中存在系统偏差，如部分用户倾向于高评分或部分项目因质量优秀获得更多高分。模型显式分离偏差成分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$ \mu $：全局评分平均值。&lt;/li&gt;
+&lt;li&gt;$b_u$：用户评分偏差，表示用户对全局评分的偏离程度。&lt;/li&gt;
+&lt;li&gt;$ b_i $：项目评分偏差，表示项目质量或流行度的平均影响。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;通过分离这些偏差，模型更准确地捕捉用户与项目间的真实交互。&lt;/p&gt;
+&lt;h4 id=&#34;5-并行化和扩展性&#34;&gt;5. 并行化和扩展性
+&lt;/h4&gt;&lt;p&gt;矩阵分解技术具有良好的并行化能力：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;随机梯度下降（SGD）&lt;/strong&gt;：快速优化模型参数，适用于稀疏数据。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;交替最小二乘法（ALS）&lt;/strong&gt;：支持并行化计算，适合处理大规模隐式数据。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在 Netflix 数据集上，ALS 方法能有效应对数据规模增长，同时保持高精度。&lt;/p&gt;
+&lt;h4 id=&#34;6-实验结果验证&#34;&gt;6. 实验结果验证
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;使用 Netflix Prize 数据集（1 亿条评分，500,000 用户和 17,000 项目），评估模型在不同特性下的表现：
+&lt;ul&gt;
+&lt;li&gt;Netflix 原始系统 RMSE 为 0.9514，扩展模型将其降低至 0.8563，达到竞赛目标。&lt;/li&gt;
+&lt;li&gt;时间动态和隐式反馈的加入显著提升了冷启动和长期预测的效果。&lt;/li&gt;
+&lt;li&gt;不同维度的隐变量设置表明，增加维度能提升模型性能，但过高可能导致过拟合。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;结论&#34;&gt;结论
+&lt;/h3&gt;&lt;p&gt;Netflix 推荐系统通过矩阵分解技术实现了协同过滤的突破性进展：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;灵活捕捉用户与项目间的复杂交互。&lt;/li&gt;
+&lt;li&gt;高效处理大规模稀疏数据，并显著提升推荐质量。&lt;/li&gt;
+&lt;li&gt;成功整合时间动态、隐式反馈和偏差建模，扩展了推荐系统的适用场景。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些技术为现代电子商务和流媒体平台的推荐系统设计提供了重要的参考和方向。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>ItemCF</title>
         <link>https://deisbeir.github.io/p/itemcf/</link>
         <pubDate>Mon, 13 Jan 2025 17:45:37 +0800</pubDate>

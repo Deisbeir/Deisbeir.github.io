@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="论文总结：Item-Based Collaborative Filtering Recommendation Algorithms ABSTRACT\n\u200b\tRecommender systems apply knowledge discovery techniques to the problem of making personalized recommendations for information, products or services during a live interaction. These systems, especially the k-nearest neighbor collaborative ltering based ones, are achieving widespread success on the Web. The tremendous growth in the amount of available information and the number of visitors to Web sites in recent years poses some key challenges for recommender systems. These are: producing high quality recommendations, performing many recommendations per second for millions of users and items and achieving high coverage in the face of data sparsity. In traditional collaborative ltering systems the amount of work increases with the number of participants in the system. New recommender system technologies are needed that can quickly produce high quality recom- mendations, even for very large-scale problems. To address these issues we have explored item-based collaborative ltering techniques. Item-based techniques rst analyze the user-item matrix to identify relationships between dierent items, and then use these relationships to indirectly compute recommendations for users.\n">
-<title>ItemCF</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="论文总结：Matrix Factorization Techniques for Recommender Systems ABSTRACT\n\u200b\tAs the Netflix Prize competition has demonstrated, matrix factorization models are superior to classic nearest neighbor techniques for producing product recommendations, allowing the incorporation of additional information such as implicit feedback, temporal effects, and confidence levels.\n\u200b\t本论文深入探讨了 Netflix 推荐系统中使用的矩阵分解技术及其在协同过滤领域的优越性。通过将用户和项目映射到隐变量空间，该技术能够捕捉用户与项目间的复杂交互。论文强调了矩阵分解模型在整合时间动态、隐式反馈和偏差建模等方面的灵活性，并通过 Netflix Prize 数据集验证了其对推荐质量的显著提升。\n">
+<title>Matrix_Factorization</title>
 
-<link rel='canonical' href='https://deisbeir.github.io/p/itemcf/'>
+<link rel='canonical' href='https://deisbeir.github.io/p/matrix_factorization/'>
 
-<link rel="stylesheet" href="/scss/style.min.9cf3bf6160e8c1c4f6182717316b748161ecbc5e5b0a18d3e1e16f511497644a.css"><meta property='og:title' content="ItemCF">
-<meta property='og:description' content="论文总结：Item-Based Collaborative Filtering Recommendation Algorithms ABSTRACT\n\u200b\tRecommender systems apply knowledge discovery techniques to the problem of making personalized recommendations for information, products or services during a live interaction. These systems, especially the k-nearest neighbor collaborative ltering based ones, are achieving widespread success on the Web. The tremendous growth in the amount of available information and the number of visitors to Web sites in recent years poses some key challenges for recommender systems. These are: producing high quality recommendations, performing many recommendations per second for millions of users and items and achieving high coverage in the face of data sparsity. In traditional collaborative ltering systems the amount of work increases with the number of participants in the system. New recommender system technologies are needed that can quickly produce high quality recom- mendations, even for very large-scale problems. To address these issues we have explored item-based collaborative ltering techniques. Item-based techniques rst analyze the user-item matrix to identify relationships between dierent items, and then use these relationships to indirectly compute recommendations for users.\n">
-<meta property='og:url' content='https://deisbeir.github.io/p/itemcf/'>
+<link rel="stylesheet" href="/scss/style.min.9cf3bf6160e8c1c4f6182717316b748161ecbc5e5b0a18d3e1e16f511497644a.css"><meta property='og:title' content="Matrix_Factorization">
+<meta property='og:description' content="论文总结：Matrix Factorization Techniques for Recommender Systems ABSTRACT\n\u200b\tAs the Netflix Prize competition has demonstrated, matrix factorization models are superior to classic nearest neighbor techniques for producing product recommendations, allowing the incorporation of additional information such as implicit feedback, temporal effects, and confidence levels.\n\u200b\t本论文深入探讨了 Netflix 推荐系统中使用的矩阵分解技术及其在协同过滤领域的优越性。通过将用户和项目映射到隐变量空间，该技术能够捕捉用户与项目间的复杂交互。论文强调了矩阵分解模型在整合时间动态、隐式反馈和偏差建模等方面的灵活性，并通过 Netflix Prize 数据集验证了其对推荐质量的显著提升。\n">
+<meta property='og:url' content='https://deisbeir.github.io/p/matrix_factorization/'>
 <meta property='og:site_name' content='德斯别尔-Des'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='论文' /><meta property='article:published_time' content='2025-01-13T17:45:37&#43;08:00'/><meta property='article:modified_time' content='2025-01-13T17:45:37&#43;08:00'/><meta property='og:image' content='https://deisbeir.github.io/p/itemcf/show.png' />
-<meta name="twitter:title" content="ItemCF">
-<meta name="twitter:description" content="论文总结：Item-Based Collaborative Filtering Recommendation Algorithms ABSTRACT\n\u200b\tRecommender systems apply knowledge discovery techniques to the problem of making personalized recommendations for information, products or services during a live interaction. These systems, especially the k-nearest neighbor collaborative ltering based ones, are achieving widespread success on the Web. The tremendous growth in the amount of available information and the number of visitors to Web sites in recent years poses some key challenges for recommender systems. These are: producing high quality recommendations, performing many recommendations per second for millions of users and items and achieving high coverage in the face of data sparsity. In traditional collaborative ltering systems the amount of work increases with the number of participants in the system. New recommender system technologies are needed that can quickly produce high quality recom- mendations, even for very large-scale problems. To address these issues we have explored item-based collaborative ltering techniques. Item-based techniques rst analyze the user-item matrix to identify relationships between dierent items, and then use these relationships to indirectly compute recommendations for users.\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://deisbeir.github.io/p/itemcf/show.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='论文' /><meta property='article:published_time' content='2025-01-14T11:49:34&#43;08:00'/><meta property='article:modified_time' content='2025-01-14T11:49:34&#43;08:00'/><meta property='og:image' content='https://deisbeir.github.io/p/matrix_factorization/show.png' />
+<meta name="twitter:title" content="Matrix_Factorization">
+<meta name="twitter:description" content="论文总结：Matrix Factorization Techniques for Recommender Systems ABSTRACT\n\u200b\tAs the Netflix Prize competition has demonstrated, matrix factorization models are superior to classic nearest neighbor techniques for producing product recommendations, allowing the incorporation of additional information such as implicit feedback, temporal effects, and confidence levels.\n\u200b\t本论文深入探讨了 Netflix 推荐系统中使用的矩阵分解技术及其在协同过滤领域的优越性。通过将用户和项目映射到隐变量空间，该技术能够捕捉用户与项目间的复杂交互。论文强调了矩阵分解模型在整合时间动态、隐式反馈和偏差建模等方面的灵活性，并通过 Netflix Prize 数据集验证了其对推荐质量的显著提升。\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://deisbeir.github.io/p/matrix_factorization/show.png' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -235,17 +235,19 @@
   <ol>
     <li>
       <ol>
-        <li><a href="#论文总结item-based-collaborative-filtering-recommendation-algorithms">论文总结：<em>Item-Based Collaborative Filtering Recommendation Algorithms</em></a></li>
-        <li><a href="#背景">背景</a>
+        <li><a href="#论文总结matrix-factorization-techniques-for-recommender-systems">论文总结：<strong>Matrix Factorization Techniques for Recommender Systems</strong></a></li>
+        <li><a href="#背景">背景</a></li>
+        <li><a href="#主要发现">主要发现</a>
           <ol>
-            <li><a href="#主要发现">主要发现</a></li>
-            <li><a href="#结论">结论</a></li>
+            <li><a href="#1-矩阵分解技术的优越性">1. 矩阵分解技术的优越性</a></li>
+            <li><a href="#2-时间动态的影响">2. 时间动态的影响</a></li>
+            <li><a href="#3-隐式反馈的整合">3. 隐式反馈的整合</a></li>
+            <li><a href="#4-偏差建模的贡献">4. 偏差建模的贡献</a></li>
+            <li><a href="#5-并行化和扩展性">5. 并行化和扩展性</a></li>
+            <li><a href="#6-实验结果验证">6. 实验结果验证</a></li>
           </ol>
         </li>
-        <li><a href="#原理">原理</a></li>
-        <li><a href="#实验方法">实验方法</a></li>
-        <li><a href="#实验结果">实验结果</a></li>
-        <li><a href="#总结">总结</a></li>
+        <li><a href="#结论">结论</a></li>
       </ol>
     </li>
   </ol>
@@ -262,13 +264,13 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/itemcf/">
-                <img src="/p/itemcf/show_hu12001762680139209065.png"
-                        srcset="/p/itemcf/show_hu12001762680139209065.png 800w, /p/itemcf/show_hu12288947334072802884.png 1600w"
+            <a href="/p/matrix_factorization/">
+                <img src="/p/matrix_factorization/show_hu15887800267073515352.png"
+                        srcset="/p/matrix_factorization/show_hu15887800267073515352.png 800w, /p/matrix_factorization/show_hu7002801268834077822.png 1600w"
                         width="800" 
-                        height="199" 
+                        height="210" 
                         loading="lazy"
-                        alt="Featured image of post ItemCF" />
+                        alt="Featured image of post Matrix_Factorization" />
                 
             </a>
         </div>
@@ -287,7 +289,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/itemcf/">ItemCF</a>
+            <a href="/p/matrix_factorization/">Matrix_Factorization</a>
         </h2>
     
         
@@ -309,7 +311,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Jan 13, 2025</time>
+                <time class="article-time--published">Jan 14, 2025</time>
             </div>
         
 
@@ -325,171 +327,104 @@
     <section class="article-content">
     
     
-    <h3 id="论文总结item-based-collaborative-filtering-recommendation-algorithms">论文总结：<em>Item-Based Collaborative Filtering Recommendation Algorithms</em>
-</h3><p><img src="/p/itemcf/1.png"
-	width="988"
-	height="280"
-	srcset="/p/itemcf/1_hu1346023622882188747.png 480w, /p/itemcf/1_hu17807581507284861765.png 1024w"
-	loading="lazy"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="352"
-		data-flex-basis="846px"
-	
-></p>
+    <h3 id="论文总结matrix-factorization-techniques-for-recommender-systems">论文总结：<strong>Matrix Factorization Techniques for Recommender Systems</strong>
+</h3><img src="1.png" alt="image-20250114122454762" style="zoom:50%;" />
 <p><em><strong>ABSTRACT</strong></em></p>
-<p>​			Recommender systems apply knowledge discovery techniques to the problem of making personalized recommendations for information, products or services during a live interaction. These systems, especially the k-nearest neighbor collaborative ltering based ones, are achieving widespread success on the Web. The tremendous growth in the amount of available information and the number of visitors to Web sites in recent years poses some key challenges for recommender systems. These are: producing high quality recommendations, performing many recommendations per second for millions of users and items and achieving high coverage in the face of data sparsity. In traditional collaborative ltering systems the amount of work increases with the number of participants in the system. New recommender system technologies are needed that can quickly produce high quality recom- mendations, even for very large-scale problems. To address these issues we have explored item-based collaborative ltering techniques. Item-based techniques rst analyze the user-item matrix to identify relationships between dierent items, and then use these relationships to indirectly compute recommendations for users.</p>
-<p>​			In this paper we analyze dierent item-based recommendation generation algorithms. We look into dierent techniques for computing item-item similarities (e.g., item-item correlation vs. cosine similarities between item vectors) and dierent techniques for obtaining recommendations from them (e.g., weighted sum vs. regression model). Finally, we ex- perimentally evaluate our results and compare them to the basic k-nearest neighbor approach. Our experiments suggest that item-based algorithms provide dramatically better performance than user-based algorithms, while at the same time providing better quality than the best available userbased algorithms.</p>
+<p>​		As the Netflix Prize competition has demonstrated, matrix factorization models are superior to classic nearest neighbor techniques for producing product recommendations, allowing the incorporation of additional information such as implicit feedback, temporal effects, and confidence levels.</p>
+<p>​		本论文深入探讨了 Netflix 推荐系统中使用的矩阵分解技术及其在协同过滤领域的优越性。通过将用户和项目映射到隐变量空间，该技术能够捕捉用户与项目间的复杂交互。论文强调了矩阵分解模型在整合时间动态、隐式反馈和偏差建模等方面的灵活性，并通过 Netflix Prize 数据集验证了其对推荐质量的显著提升。</p>
 <h3 id="背景">背景
-</h3><p>随着信息量的爆炸式增长，用户在选择商品或服务时面临的信息过载问题变得越来越突出。推荐系统是解决这一问题的关键技术，它通过分析用户行为和数据，提供个性化的推荐。目前，基于协同过滤（Collaborative Filtering, CF）的推荐技术是最成功的应用之一，广泛应用于信息过滤和电子商务场景中。</p>
-<p>然而，传统的基于用户的协同过滤方法面临两大挑战：</p>
+</h3><p>随着电子商务和内容平台的发展，推荐系统在为用户提供个性化服务方面发挥了重要作用。Netflix 推荐系统基于协同过滤，旨在分析用户对电影的评分模式，以预测未来的观看偏好。</p>
+<p>推荐系统主要分为两类：</p>
 <ol>
-<li><strong>可扩展性</strong>：随着用户和项目数量的增加，计算开销显著上升，尤其是在处理大量数据时会导致实时推荐变得不可行。</li>
-<li><strong>推荐质量</strong>：数据稀疏性（即用户对大多数项目没有评分）导致推荐的准确性下降。</li>
+<li><strong>基于内容过滤</strong>：通过分析用户和项目的属性特征匹配用户与项目。</li>
+<li><strong>协同过滤</strong>：利用用户行为（如评分或购买记录）预测用户兴趣。</li>
 </ol>
-<p>为了解决这些问题，本文提出了基于项目的协同过滤算法。与传统方法相比，基于项目的算法通过分析项目间的相似性来生成推荐，而不是直接寻找相似用户。</p>
-<p>本文探讨了一种新颖的基于项目的协同过滤（Item-Based Collaborative Filtering, IBCF）推荐算法，用于解决传统用户为中心的协同过滤算法在大规模数据集中的性能和推荐质量问题。主要贡献包括：</p>
-<ol>
-<li><strong>算法分析</strong>：对项目相似性计算（如余弦相似度、调整余弦相似度和相关性）和推荐生成方法（加权和与回归模型）的深入研究。</li>
-<li><strong>预计算模型</strong>：提出一种预计算项目相似度的方法，通过静态项目数据提高算法的在线可扩展性。</li>
-<li><strong>实验评估</strong>：对算法的推荐质量与性能进行了实验比较，结果表明基于项目的算法在推荐精度和效率方面显著优于基于用户的算法。</li>
-</ol>
-<h4 id="主要发现">主要发现
+<p>Netflix 系统采用协同过滤方法，其中矩阵分解模型通过隐变量空间的表示，解决了传统最近邻方法的可扩展性和精度不足问题。</p>
+<h3 id="主要发现">主要发现
+</h3><h4 id="1-矩阵分解技术的优越性">1. 矩阵分解技术的优越性
+</h4><p>矩阵分解模型是协同过滤中最成功的方法之一，其核心思想是将用户和项目嵌入到同一个隐变量空间，通过内积建模用户与项目的交互。具体特性包括：</p>
+<ul>
+<li>
+<p><strong>高效建模用户和项目</strong>：</p>
+$$
+  \hat{r}_{ui} = \mu + b_u + b_i + q_i^T p_u
+  $$<ul>
+<li>$ \mu $ ：全局平均评分。</li>
+<li>$b_u$ ，$ b_i $：用户和项目的评分偏差。</li>
+<li>$q_i$，$p_u$：项目和用户的隐变量向量，捕捉用户偏好与项目特性。</li>
+</ul>
+</li>
+<li>
+<p><strong>灵活性</strong>： 模型能够自然整合时间动态、隐式反馈和偏差等多种数据特性。</p>
+</li>
+<li>
+<p><strong>高效性与准确性</strong>： 实验表明矩阵分解模型显著优于基于用户或项目的最近邻算法，能够以较低计算成本提供更高的预测精度。</p>
+</li>
+</ul>
+<h4 id="2-时间动态的影响">2. 时间动态的影响
+</h4><p>用户偏好和项目流行度随时间变化，矩阵分解模型通过动态调整用户和项目的特性向量来捕捉这些变化：</p>
+<ul>
+<li>
+<p>用户评分基线随时间漂移（如评分标准变宽或变严）。</p>
+</li>
+<li>
+<p>项目流行度因外部事件（如电影奖项、演员活动）而变化。</p>
+</li>
+<li>
+$$
+  \hat{r}_{ui}(t) = \mu + b_i(t) + b_u(t) + q_i^T p_u(t)
+  $$</li>
+<li>
+<p>时间动态的加入显著降低了预测误差，尤其是在用户行为变化频繁的场景中。</p>
+</li>
+</ul>
+<h4 id="3-隐式反馈的整合">3. 隐式反馈的整合
+</h4><p>Netflix 推荐系统能够利用隐式反馈（如观看时长、点击行为）弥补评分数据稀疏的问题：</p>
+<ul>
+<li>
+<p>隐式反馈以用户行为的存在或频率作为信号（如某用户购买或观看某项目的次数）。</p>
+</li>
+<li>
+$$
+  \hat{r}_{ui} = \mu + b_u + b_i + q_i^T \left(p_u + |N(u)|^{-0.5} \sum_{i \in N(u)} x_i\right)
+  $$</li>
+<li>
+<p>实验显示，隐式反馈的加入能够提升冷启动用户和项目的推荐效果。</p>
+</li>
+</ul>
+<h4 id="4-偏差建模的贡献">4. 偏差建模的贡献
+</h4><p>评分数据中存在系统偏差，如部分用户倾向于高评分或部分项目因质量优秀获得更多高分。模型显式分离偏差成分：</p>
+<ul>
+<li>$ \mu $：全局评分平均值。</li>
+<li>$b_u$：用户评分偏差，表示用户对全局评分的偏离程度。</li>
+<li>$ b_i $：项目评分偏差，表示项目质量或流行度的平均影响。</li>
+</ul>
+<p>通过分离这些偏差，模型更准确地捕捉用户与项目间的真实交互。</p>
+<h4 id="5-并行化和扩展性">5. 并行化和扩展性
+</h4><p>矩阵分解技术具有良好的并行化能力：</p>
+<ul>
+<li><strong>随机梯度下降（SGD）</strong>：快速优化模型参数，适用于稀疏数据。</li>
+<li><strong>交替最小二乘法（ALS）</strong>：支持并行化计算，适合处理大规模隐式数据。</li>
+</ul>
+<p>在 Netflix 数据集上，ALS 方法能有效应对数据规模增长，同时保持高精度。</p>
+<h4 id="6-实验结果验证">6. 实验结果验证
 </h4><ul>
-<li>调整余弦相似度在生成高质量推荐方面效果最佳。</li>
-<li>与用户为中心的算法相比，基于项目的算法在数据稀疏性和大规模处理时具有更高的预测精度（较低的平均绝对误差，MAE）。</li>
-<li>通过模型预计算，只需存储少量的相似项目即可生成高质量的推荐，显著提高了系统的响应速度和吞吐量。</li>
-</ul>
-<h4 id="结论">结论
-</h4><p>基于项目的协同过滤算法为大规模电子商务中的推荐系统提供了高效且高质量的解决方案，能够在大规模数据集上实现良好的性能表现。这种方法解决了传统用户为中心方法在稀疏性和可扩展性上的瓶颈。</p>
-<h3 id="原理">原理
-</h3><p><strong>基于项目的协同过滤算法</strong>的核心思想是通过计算项目间的相似性来预测用户对某一项目的偏好。以下是其基本工作流程：</p>
-<p><img src="/p/itemcf/2.png"
-	width="1045"
-	height="361"
-	srcset="/p/itemcf/2_hu8136991726507575375.png 480w, /p/itemcf/2_hu689072321997275323.png 1024w"
-	loading="lazy"
-	
-		alt="image-20250113180530094"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="289"
-		data-flex-basis="694px"
-	
-></p>
-<ol>
-<li>
-<p><strong>用户-项目评分矩阵</strong>：</p>
+<li>使用 Netflix Prize 数据集（1 亿条评分，500,000 用户和 17,000 项目），评估模型在不同特性下的表现：
 <ul>
-<li>输入为一个矩阵，其中每一行代表一个用户，每一列代表一个项目，矩阵中的值表示用户对项目的评分。</li>
-<li>例如，用户 A 对电影 1 的评分为 5 分，而对电影 2 尚未评分（值为 0）。</li>
+<li>Netflix 原始系统 RMSE 为 0.9514，扩展模型将其降低至 0.8563，达到竞赛目标。</li>
+<li>时间动态和隐式反馈的加入显著提升了冷启动和长期预测的效果。</li>
+<li>不同维度的隐变量设置表明，增加维度能提升模型性能，但过高可能导致过拟合。</li>
 </ul>
 </li>
-<li>
-<p><strong>项目相似性计算</strong>：</p>
+</ul>
+<h3 id="结论">结论
+</h3><p>Netflix 推荐系统通过矩阵分解技术实现了协同过滤的突破性进展：</p>
 <ul>
-<li>
-<p><strong>余弦相似度</strong>：将项目看作向量，计算它们之间夹角的余弦值：</p>
-<img src="5.png" alt="image-20250113181156430" style="zoom: 67%;" />
-</li>
-<li>
-<p><strong>相关性相似度</strong>：使用皮尔逊相关系数，通过去除用户评分的平均值来计算相似性：</p>
-<img src="6.png" alt="image-20250113181311252" style="zoom:67%;" />
-</li>
-<li>
-<p><strong>调整余弦相似度</strong>：修正余弦相似度，考虑用户评分偏差：</p>
-<img src="7.png" alt="image-20250113181354120" style="zoom:67%;" />
-</li>
+<li>灵活捕捉用户与项目间的复杂交互。</li>
+<li>高效处理大规模稀疏数据，并显著提升推荐质量。</li>
+<li>成功整合时间动态、隐式反馈和偏差建模，扩展了推荐系统的适用场景。</li>
 </ul>
-<img src="3.png" alt="image-20250113180749897"  />
-</li>
-<li>
-<p><strong>评分预测</strong>：</p>
-<ul>
-<li>
-<p><strong>加权和</strong>：对目标项目的评分预测，利用目标用户对相似项目的评分加权求和：</p>
-<img src="8.png" alt="image-20250113181455124" style="zoom: 80%;" />
-</li>
-<li>
-<p><strong>回归模型</strong>：利用回归方法对评分进行调整，避免直接使用评分可能产生的误差。</p>
-</li>
-</ul>
-<p><img src="/p/itemcf/4.png"
-	width="1173"
-	height="419"
-	srcset="/p/itemcf/4_hu1753262329743907650.png 480w, /p/itemcf/4_hu8124815917033415161.png 1024w"
-	loading="lazy"
-	
-		alt="image-20250113180912486"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="279"
-		data-flex-basis="671px"
-	
-></p>
-</li>
-<li>
-<p><strong>模型预计算</strong>：</p>
-<ul>
-<li>对所有项目计算相似性矩阵，只存储每个项目的最相似的几个项目，用于实时推荐。</li>
-<li>通过减少计算范围（即限制 ），显著降低了计算复杂度和存储需求。</li>
-</ul>
-</li>
-</ol>
-<h3 id="实验方法">实验方法
-</h3><ol>
-<li><strong>数据集</strong>：
-<ul>
-<li>使用来自 <strong>MovieLens</strong> 推荐系统的数据集，包含 943 名用户和 1682 部电影，总计约 10 万条评分数据。</li>
-<li>数据被分为训练集和测试集，不同比例（如 80:20）的分割用于实验分析。</li>
-</ul>
-</li>
-<li><strong>评价指标</strong>：
-<ul>
-<li><strong>平均绝对误差（Mean Absolute Error, MAE）</strong>：衡量预测评分与实际评分之间的平均差异：</li>
-<li>MAE 越低，表示预测精度越高。</li>
-</ul>
-</li>
-<li><strong>实验设置</strong>：
-<ul>
-<li>对比不同相似性算法（如余弦、调整余弦、相关性）对推荐质量的影响。</li>
-<li>分析训练集比例、邻居数量（ 值）和模型规模对性能和质量的影响。</li>
-<li>与传统用户为中心的  近邻算法进行比较。</li>
-</ul>
-</li>
-</ol>
-<h3 id="实验结果">实验结果
-</h3><ol>
-<li><strong>相似性算法对推荐质量的影响</strong>：
-<ul>
-<li>调整余弦相似度的 MAE 最低，优于普通余弦和相关性相似度。</li>
-<li>在所有实验中，调整余弦相似度都被选为推荐算法的默认配置。</li>
-</ul>
-</li>
-<li><strong>训练集比例和邻居数量的敏感性</strong>：
-<ul>
-<li>随着训练集比例从 20% 增加到 80%，预测质量逐渐提升（MAE 逐渐降低），但收益逐渐减少。</li>
-<li>基于项目的加权和算法在邻居数量  为 30 时达到最佳性能，进一步增加邻居数量提升有限。</li>
-</ul>
-</li>
-<li><strong>与用户为中心的推荐算法比较</strong>：
-<ul>
-<li>基于项目的算法在所有数据稀疏性情况下都优于基于用户的  近邻算法，尤其是在稀疏数据集上表现显著。</li>
-<li>回归模型在极稀疏数据下表现良好，但在高密度数据中可能过拟合，表现反而下降。</li>
-</ul>
-</li>
-<li><strong>模型预计算的性能表现</strong>：
-<ul>
-<li>通过限制模型规模，仅存储最相似的 25-50 个项目，可以实现约 96-98% 的预测精度，显著减少存储和计算时间。</li>
-<li>在处理效率上，基于模型的算法比直接计算的项目-项目方法快 10 倍以上。</li>
-</ul>
-</li>
-</ol>
-<h3 id="总结">总结
-</h3><p>实验表明，基于项目的协同过滤算法不仅在推荐质量上优于传统方法，还在大规模数据集上表现出色。通过预计算技术，算法在计算效率和存储需求之间实现了良好的平衡，是一种适用于电子商务环境的大规模推荐系统解决方案。</p>
+<p>这些技术为现代电子商务和流媒体平台的推荐系统设计提供了重要的参考和方向。</p>
 
 </section>
 
@@ -520,23 +455,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/matrix_factorization/">
+    <a href="/p/itemcf/">
         
         
             <div class="article-image">
-                <img src="/p/matrix_factorization/show.7bba0bd3e9bd51462ac3c0d94dffefb0_hu13961633599826866690.png" 
+                <img src="/p/itemcf/show.df97ba0a926caa766edc10bc80c69899_hu3823306523109680778.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post Matrix_Factorization"
+                        alt="Featured image of post ItemCF"
                         
-                        data-hash="md5-e7oL0&#43;m9UUYqw8DZTf/vsA==">
+                        data-hash="md5-35e6CpJsqnZu3BC8gMaYmQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">Matrix_Factorization</h2>
+            <h2 class="article-title">ItemCF</h2>
         </div>
     </a>
 </article>
